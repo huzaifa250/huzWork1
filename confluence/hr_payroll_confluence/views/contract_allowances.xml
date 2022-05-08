@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_contract_allowances_form" model="ir.ui.view">
+        <field name="name">contract.allowances</field>
+        <field name="model">contract.allowances</field>
+        <field name="arch" type="xml">
+            <form string="Contract Allowances">
+            	<sheet>
+	                <group col="4">
+                        <field name="allowance"/>
+                        <field name="salary"/>
+	                    <field name="basic"/>
+	                    <field name="cola"/>
+	                    <field name="subsistence"/>
+	                    <field name="clothing"/>
+                        <field name="transportation"/>
+	                </group>
+	            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_contract_allowances_tree" model="ir.ui.view">
+        <field name="name">contract.allowances</field>
+        <field name="model">contract.allowances</field>
+        <field name="arch" type="xml">
+            <tree string="Contract Allowances">
+                <field name="allowance"/>
+                <field name="salary"/>
+                <field name="basic"/>
+                <field name="cola"/>
+                <field name="subsistence"/>
+                <field name="clothing"/>
+                <field name="transportation"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_contract_allowances" model="ir.actions.act_window">
+        <field name="name">Contract Allowances</field>
+        <field name="res_model">contract.allowances</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_contract_allowances_tree"/>
+    </record>
+
+    <menuitem id="menu_contract_allowances"  name="Contract Allowances" action="action_contract_allowances" parent="hr_payroll.menu_hr_salary_configuration" sequence="36"/>
+
+</odoo>

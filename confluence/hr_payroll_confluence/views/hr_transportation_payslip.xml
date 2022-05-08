@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_payslip_form_inh" model="ir.ui.view">
+        <field name="name">hr.payslip.form</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='struct_id']" position="after">
+                <field name="days_work" invisible="1" />
+                <field name="days_absence" attrs="{'invisible':[('transportation','=',False)]}" />
+                <field name="transportation" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='worked_days_line_ids']/tree/field[@name='amount']" position="replace">
+                <field name="amount" readonly="1" sum="Total Amount" force_save="1" attrs="{'column_invisible':[('parent.transportation','=',True)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_payroll.action_hr_payslip_run_tree" model="ir.actions.act_window">
+        <field name="name">Payslips Batches</field>
+        <field name="res_model">hr.payslip.run</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('transportation','!=', True)]</field>
+        <field name="search_view_id" ref="hr_payroll.hr_payslip_run_filter"/>
+    </record>
+
+    <record id="action_transp_payslip" model="ir.actions.act_window">
+        <field name="name">Transportation Payslips</field>
+        <field name="res_model">hr.payslip.run</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'default_transportation': True}</field>
+        <field name="domain">[('transportation','=', True)]</field>
+    </record>
+
+    <menuitem
+        id="menu_transp_payslips"
+        name="Transportation Batchs"
+        parent="hr_payroll.menu_hr_payroll_payslips"
+        sequence="100"
+        action="action_transp_payslip"/>
+</odoo>

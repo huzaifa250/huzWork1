@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="paperformat_asiento_contable" model="report.paperformat">
+            <field name="name">Custom</field>
+            <field name="orientation">Landscape</field>
+        </record>
+
+        <record id="action_hr_payslip_run_full" model="ir.actions.report">
+            <field name="name">Payslip Full Details</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_payroll_confluence.report_full_details_template</field>
+            <field name="report_file">hr_payroll_confluence.report_full_details_template</field>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip_run"/>
+            <field name="paperformat_id" ref="paperformat_asiento_contable"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_hr_payslip_run_salary" model="ir.actions.report">
+            <field name="name">Payslip Salary Details</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_payroll_confluence.report_salary_details_template</field>
+            <field name="report_file">hr_payroll_confluence.report_salary_details_template</field>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip_run"/>
+            <field name="paperformat_id" ref="paperformat_asiento_contable"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="action_hr_payslip_run_transport" model="ir.actions.report">
+            <field name="name">Transportation Payslip Details</field>
+            <field name="model">hr.payslip.run</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">hr_payroll_confluence.report_transportation_template</field>
+            <field name="report_file">hr_payroll_confluence.report_transportation_template</field>
+            <field name="binding_model_id" ref="hr_payroll.model_hr_payslip_run"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_transportation_template_doc">
+		<t t-call="web.html_container">
+			<t t-call="web.external_layout">
+				<t t-if="o.transportation">
+					<div class="page">
+	                    <h3><center><u> TRANSPOTATION PAYSLIPS DETAILS</u></center></h3>
+	                    <h5><center><span t-esc="o.date_start"/>   -   <span t-esc="o.date_end"/></center></h5>
+	                    <br/>
+	                    <table class="table table-bordered table-condensed">
+	                    	<thead class="text-center" style="background-color:#dce8f2;">
+	                    		<th style="font-weight: bold;border: 1px solid black;">#</th>
+	                    		<th style="font-weight: bold;border: 1px solid black;">Employee</th>
+	                    		<th style="font-weight: bold;border: 1px solid black;">Transportation <br/>Amount</th>
+	                    		<th style="font-weight: bold;border: 1px solid black;">Work Days</th>
+	                    		<th style="font-weight: bold;border: 1px solid black;">Absence Days</th>
+	                    		<th style="font-weight: bold;border: 1px solid black;">Deserved Amount</th>
+	                    	</thead>
+	                    	<tbody>
+	                    		<t t-set="count" t-value="1"/>
+	                    		<t t-foreach="slip_dict" t-as="slip">
+		                    		<tr class="text-center">
+		                    			<td style="border: 1px solid black;">
+		                    				<span style="font-weight: bold;" t-esc="count"></span>
+		                    			</td>
+		                    			<td style="border: 1px solid black;">
+		                    				<span style="font-weight: bold;" t-esc="slip"></span>
+		                    			</td>
+		                    			<t t-foreach="slip_dict[slip]" t-as="line">
+			                    			<td style="border: 1px solid black;">
+			                    				<span style="font-weight: bold;" t-esc="'{0:,.2f}'.format(float(line))"></span>
+			                    			</td>
+		                    			</t>
+		                    			<t t-set="count" t-value="count+1"/>
+		                    		</tr>
+		                    	</t>
+		                    	<tr class="text-center">
+	                    			<td colspan="5" style="border: 1px solid black;">TOTAL</td>
+	                    			<td style="border: 1px solid black;">
+	                    				<span style="font-weight: bold;" t-esc="'{0:,.2f}'.format(float(total))"></span>
+	                    			</td>
+	                    		</tr>
+		                    </tbody>
+	                    </table>
+	                </div>
+				</t>
+				<t t-else="">
+					<div class="page">
+						<br/><br/><br/><br/>
+						<h3><center> THIS REPORT FOR TRANSPOTATION PAYSLIPS BATCHS ONLY, SO YOU CAN NOT PRINT IT FROM THIS BATCH.</center></h3>
+					</div>
+				</t>
+			</t>
+		</t>
+	</template>
+
+	<template id="report_transportation_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="hr_payroll_confluence.report_transportation_template_doc"/>
+            </t>
+        </t>
+    </template>
+</odoo>

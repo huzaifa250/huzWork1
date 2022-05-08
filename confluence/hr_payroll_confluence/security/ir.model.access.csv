@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_contract_allowances,contract_allowances,model_contract_allowances,,1,1,1,0
+
+
+
+
+
