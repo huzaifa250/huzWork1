@@ -1,0 +1,31 @@
+<field name="is_create_picking" invisible="1"/>
+                    <field name="is_create_purchase" invisible="1"/>
+                    <button
+                        name="button_draft"
+                        states="approved,rejected,done"
+                        string="Reset To Draft"
+                        type="object"
+                        groups="purchase_request.group_purchase_request_user,purchase_request.group_purchase_request_manager"
+                    />
+
+                    //////////////////////
+                        def _compute_check_qty(self):
+        self.is_create_picking = False
+        self.is_create_purchase = False
+        for line in self.line_ids:
+            if line.qty_available > line.product_qty:
+                line.is_create_picking = True
+            else:
+                line.is_create_purchase = True
+
+is_create_purchase = fields.Boolean('is create',default=False,compute='_compute_check_qty')
+    is_create_picking = fields.Boolean('is create',default=False,compute='_compute_check_qty')
+
+
+
+
+
+
+
+
+

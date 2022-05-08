@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+        
+
+       <record id="group_fleet_gm" model="res.groups">
+        <field name="name">General Manager</field>
+    </record>
+
+
+    </data>
+</odoo>

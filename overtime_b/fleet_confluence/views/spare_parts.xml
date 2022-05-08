@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record id="view_fleet_vehicle_confluence_form_inherit" model="ir.ui.view">-->
+<!--            <field name="name">fleet.vehicle.form</field>-->
+<!--            <field name="model">fleet.vehicle</field>-->
+<!--            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--            <xpath expr="//page" position="after">-->
+
+<!--                <page string="Analytic Account">-->
+<!--                            <group>-->
+<!--                <field name="analytic_account_id"/>-->
+<!--                            </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+
+
+<!--            </field>-->
+<!--        </record>-->
+
+
+    </data>
+</odoo>

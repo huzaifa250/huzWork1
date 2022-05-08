@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+         <record id="fleet_services_sequence" model="ir.sequence">
+            <field name="name">sequence_name</field>
+            <field name="code">fleet.vehicle.log.services</field>
+             <field name="prefix">CSI/</field>
+            <field name="padding">4</field>
+         </record>
+        <record id="fleet_car_movements_sequence" model="ir.sequence">
+            <field name="name">sequence_name</field>
+            <field name="code">fleet.vehicle.movements</field>
+             <field name="prefix">CM/</field>
+            <field name="padding">4</field>
+         </record>
+
+        <record id="view_fleet_vehicle_confluence_form_inherit" model="ir.ui.view">
+            <field name="name">fleet.vehicle.form</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//field[@name='next_assignation_date']" position="after">
+                    <field name="analytic_account_id"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="view_fleet_vehicle_movements_form" model="ir.ui.view">
+            <field name="name">fleet.vehicle.movements.form</field>
+            <field name="model">fleet.vehicle.movements</field>
+            <field name="arch" type="xml">
+                <form string="Car Movements">
+                    <header>
+                            <button name="action_confirm" type="object" string="Confirm" states="draft" class="oe_highlight" group="fleet.fleet_group_user"/>
+                            <button name="action_done" type="object" string="Approval" class="oe_highlight" states="confirm" group="fleet.fleet_group_manager"/>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,confirm,approve"/>
+                        </header>
+                    <sheet>
+                          <div class="oe_title">
+                    <h1>
+                        <field name="sequence" class="oe_inline"/>
+                    </h1>
+                    </div>
+                        <group>
+                            <group>
+                                <field name="vehicle_id"/>
+                                <field name="driver_id"/>
+                                <field name="date_from"/>
+                            </group>
+                            <group>
+                                <field name="requester"/>
+                                <field name="location"/>
+                                <field name="date_to"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_fleet_vehicle_log_services_confluence_form_inherit" model="ir.ui.view">
+                <field name="name">fleet.vehicle.log.services.form</field>
+                <field name="model">fleet.vehicle.log.services</field>
+                <field name="inherit_id" ref="fleet.fleet_vehicle_log_services_view_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//header" position="replace">
+                        <header>
+                            <field name="is_cars_insurance" invisible="1"/>
+                             <field name="move_id" invisible="1"/>
+                             <field name="move_id2" invisible="1"/>
+<!--                            <button name="action_running" type="object" string="Running" states="todo" class="oe_highlight" />-->
+                            <button name="action_running" type="object" string="Confirm" states="draft" class="oe_highlight" group="fleet.fleet_group_user"/>
+                            <button name="action_done" type="object" string="GM Approval" class="oe_highlight" states="gm_approval" group="group_fleet_gm"/>
+                            <button name="create_move_bi" type="object" string=" Create Bill" attrs="{'invisible': ['|','|',('move_id2', '!=', False),('is_cars_insurance', '!=', False),('state','!=','done')]}" group="group_fleet_gm"/>
+                            <button name="create_insurance_move_bill" type="object" string=" Create Bill" attrs="{'invisible': ['|','|',('move_id', '!=', False),('is_cars_insurance', '=', False),('state','!=','done')]}" group="group_fleet_gm"/>
+<!--                            <button name="set_to_new" type="object" string="Set To New" attrs="{'invisible': ['|',('move_id', '!=', False),('state','!=','done')]}"/>-->
+                            <button name="action_cancelled" type="object" string="Cancel" states="done,cancel"/>
+                            <field name="state" widget="statusbar" statusbar_visible="draft,gm_approval,done"/>
+                        </header>
+                    </xpath>
+                    <xpath expr="//group[@col='2']" position="before">
+                        <div><h1><field name="sequence"/></h1></div>
+                         <div class="oe_button_box" name="button_box" attrs="{'invisible': ['|',('move_id2', '!=', False),('is_cars_insurance', '=', False)]}">
+                                <button type="object"
+                                        name="get_account_move_treeview"
+                                        class="oe_stat_button"
+                                        icon="fa-pencil-square-o"
+                                        attrs="{'invisible': [('move_id', '=', False),('is_cars_insurance', '=', False)]}">
+                                        <field name="account_move_count" widget="statinfo" string="Bill"/>
+                                </button>
+                         </div>
+                        <div class="oe_button_box" name="button_box" attrs="{'invisible': ['|',('move_id', '!=', False),('is_cars_insurance', '!=', False)]}">
+                                <button type="object"
+                                        name="get_account_move_services_treeview"
+                                        class="oe_stat_button"
+                                        icon="fa-pencil-square-o"
+                                        attrs="{'invisible': [('move_id2', '=', False)]}">
+                                        <field name="account_move_services_count" widget="statinfo" string="Bill"/>
+                                </button>
+                         </div>
+                    </xpath>
+                    <xpath expr="//field[@name='vendor_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')],'required':True}</attribute>
+                    </xpath>
+
+<!--date  vehicle_id purchaser_id odometer   -->
+                    <xpath expr="//field[@name='description']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='service_type_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='purchaser_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='odometer']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='vehicle_id']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='date']" position="attributes">
+                        <attribute name="attrs">{'readonly': [('state', '!=', 'draft')]}</attribute>
+                    </xpath>
+
+
+<!--                    <xpath expr="//group[2]//group" position="replace"/>-->
+<!--                    </xpath>-->
+                    <xpath expr="//field[@name='amount']" position="replace">
+                       <field name="amount_cars_insurance"  attrs="{'invisible': [('is_cars_insurance', '=', False)],'readonly': [('state', '!=', 'draft')]}" required="1"/>
+                       <field name="amount"  attrs="{'invisible': [('is_cars_insurance', '!=', False)],'readonly': [('state', '!=', 'draft')]}"/>
+                    </xpath>
+                    <xpath expr="//field[@name='notes']/.." position="replace">
+                        <group string="Notes" attrs="{'invisible': [('is_cars_insurance', '=', False)]}">
+                                <field nolabel="1" name="notes" attrs="{'readonly': [('state', '!=', 'draft')]}" placeholder="Write here any other information related to the service completed."/>
+                                </group>
+                        <notebook  attrs="{'invisible': [('is_cars_insurance', '!=', False)]}">
+                            <page string="Spare Part">
+                                <group string="Spare Part" name="spare_part">
+                                    <field  name="spare_parts_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                        <tree editable="bottom" create="1" delete="1" multi_edit="1" string="Spare Part">
+                                            <field name="product_id"/>
+                                            <field name="name" required="1"/>
+                                            <field name="quantity_spare" required="1"/>
+                                            <field name="cost_spare" required="1"/>
+                                            <field name="cost_total"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Services">
+                                <group string="Services" name="confluence_services">
+                                    <field  name="confluence_services_ids" nolabel="1" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                                        <tree editable="bottom" create="1" delete="1" multi_edit="1" string="Spare Part">
+                                            <field name="product_id" string="Services"/>
+                                            <field name="name" required="1" string="Description"/>
+                                            <field name="cost_services" string="cost"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Notes" name="notes">
+                                <group string="Notes">
+                                <field nolabel="1" name="notes" attrs="{'readonly': [('state', '!=', 'draft')]}" placeholder="Write here any other information related to the service completed."/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </xpath>
+                </field>
+        </record>
+        <record id="action_cars_insurance_fleet" model="ir.actions.act_window">
+            <field name="name">Cars insurance</field>
+            <field name="res_model">fleet.vehicle.log.services</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="fleet.fleet_vehicle_log_services_view_tree"/>
+            <field name="domain">[('is_cars_insurance','=',True)]</field>
+            <field name="context">{'default_is_cars_insurance':True}</field>
+        </record>
+         <record id="fleet.fleet_vehicle_log_services_action" model="ir.actions.act_window">
+           <field name="domain">[('is_cars_insurance','!=',True)]</field>
+            <field name="context">{'default_is_cars_insurance':False}</field>
+
+
+        </record>
+        <record id="action_cars_movements_fleet" model="ir.actions.act_window">
+            <field name="name">Cars Movements</field>
+            <field name="res_model">fleet.vehicle.movements</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="fleet.fleet_vehicle_log_services_view_tree"/>
+        </record>
+
+
+        <menuitem
+              id="menu_cars_insurance_fleet"
+              action="action_cars_insurance_fleet"
+              parent="fleet.fleet_vehicles"
+              name = "Cars insurance"
+              sequence="1"/>
+        <menuitem
+              id="menu_cars_movements_fleet"
+              action="action_cars_movements_fleet"
+              parent="fleet.fleet_vehicles"
+              name = "Cars Movements"
+              sequence="1"/>
+
+
+    </data>
+</odoo>

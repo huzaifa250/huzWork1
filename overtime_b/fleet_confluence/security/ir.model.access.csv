@@ -1,0 +1,8 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fleet_vehicle,fleet.vehicle,model_fleet_vehicle,base.group_user,1,1,1,1
+access_fleet_vehicle_log_services,fleet.vehicle.log.services,model_fleet_vehicle_log_services,base.group_user,1,1,1,1
+access_fleet_account_move_line,account.move.line,model_account_move_line,base.group_user,1,1,1,1
+access_fleet_account_move,account.move,model_account_move,base.group_user,1,1,1,1
+access_fleet_services_confluence,services.confluence,model_services_confluence,base.group_user,1,1,1,1
+access_fleet_spare_parts_confluence,spare.parts.confluence,model_spare_parts_confluence,base.group_user,1,1,1,1
+access_fleet_vehicle_movements,fleet.vehicle.movements,model_fleet_vehicle_movements,base.group_user,1,1,1,1
