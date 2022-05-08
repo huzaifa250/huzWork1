@@ -1,0 +1,92 @@
+<odoo>
+    <data>
+        <report id="training_plan_report"
+                model="hr.training.plan"
+                string="Training Plan report"
+                name="hr_training_plan.training_plan_report_template"
+                report_type="qweb-pdf">
+
+        </report>
+               <template id="training_plan_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout">
+
+                        <form>
+
+                            <h1 class="page"  align="center" >
+                               Plan Name <t t-esc="doc.sequence"/>
+                            </h1>
+
+                            <div class="page">
+                                Department: <t t-esc="doc.department.name"/>
+                            </div>
+                             <div class="page">
+                                <strong >From:</strong> <t t-esc="doc.start_date"/>
+                           <strong>To:</strong><t t-esc="doc.end_date"/>
+                            </div>
+
+
+                            <table class="table table-condensed" style="border: 3px solid Darkblue;
+                                                                border-collapse: collapse;">
+                                <Strong>Training request that belong to the this Plan:</Strong>
+                                <thead>
+                                    <tr style="background:#DCDCDC">
+                                        <th class="text-left">
+                                            <strong>
+                                                Department
+                                            </strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>course</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>No Employees</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong> Date duration</strong>
+                                        </th>
+                                         <th class="text-left">
+                                            <strong> Request State</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color: #D8F0DA
+                            background: transparent">
+                                     <t t-foreach="doc.line_ids" t-as="req">
+                                    <t>
+                                        <tr align="center" style="color:red;">
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="text-left">
+                                                <span t-field="req.department"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="req.course"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="req.count"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="req.date_from"/>-<span t-field="req.date_to"/>
+                                            </td>
+                                            <td class="text-left">
+                                               <span t-field="req.state"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                     </t>
+                                </tbody>
+                            </table>
+
+
+
+                        </form>
+                </t>
+                 </t>
+                   </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hr_training_plan_hr_training_plan,hr_training_plan.hr_training_plan,model_hr_training_plan,base.group_user,1,0,0,0
+access_hr_training_plan_model_hr_training_execution,hr_training_plan_model_hr_training_execution_name,hr_training_plan.model_hr_training_execution,base.group_user,1,1,1,1
+access_training_planning_department_manager_group,hr_training_plan.hr_training_plan,model_hr_training_plan,,1,1,1,1

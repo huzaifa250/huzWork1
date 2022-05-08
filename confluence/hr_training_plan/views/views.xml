@@ -1,0 +1,316 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hr_training_plan.list">
+      <field name="name">hr_training_plan list</field>
+      <field name="model">hr.training.plan</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="sequence"/>
+            <field name="department"/>
+          <field name="start_date"   />
+          <field name="end_date"  />
+        </tree>
+      </field>
+    </record>
+
+      <record model="ir.ui.view" id="hr_training_execution_list">
+          <field name="name">hr.training.execution.list</field>
+          <field name="model">hr.training.execution</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"   />
+              <field name="start_date"   />
+              <field name="end_date"  />
+            </tree>
+          </field>
+        </record>
+
+      <record model="ir.ui.view" id="hr_training_execution_form">
+          <field name="name">hr.training.execution.form</field>
+          <field name="model">hr.training.execution</field>
+          <field name="arch" type="xml">
+              <form>
+                  <header>
+                      <button name="action_fetch" string="Fetch" class="oe_highlight" type="object"
+                              groups="hr.group_hr_manager" attrs="{'invisible': [('voucher', '!=', False)]}"
+                              />
+                              
+                      <button name="action_execute" string="Execute" class="oe_highlight" type="object"
+                              groups="hr.group_hr_manager" attrs="{'invisible': [('voucher', '!=', False)]}"
+                              />
+                              
+                      <!-- <button name="action_confirm" string="Confirm" type="object"/> -->
+                              <!-- groups="hr_custom.group_hr_general_manager"/> -->
+                      <button name="send_employee_survey" string="Send Employees Survey" type="object"
+                              />
+                      <button name="send_manager_survey" string="Send Managers Survey" type="object"
+                              />
+                      <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                  </header>
+                  <sheet>
+                    <div name="smart_button" class="oe_button_box">
+                      <button name="action_employees_answers"
+                            string="Employees Answers"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o">
+                        </button>
+                        <button name="action_managers_answers"
+                            string="Managers Answers"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-pencil-square-o">
+                        </button>
+                    </div>
+
+                      <div class="oe_title">
+                          <h1>
+                            <field name="name" readonly="1" />
+                        </h1>
+                      </div>
+                      <group>
+                        <group>
+                          <label for="vendor" string="Training Center"/>
+                          <field name="vendor" domain="[('is_training_center','=',True)]" required="1" nolabel="1"/>
+                        </group>
+                        <group>
+                        </group>
+                      </group>
+                      <group col-span="2">
+                          <group col-span="1">
+                              <field name="start_date" widget="daterange" options="{'related_end_date': 'end_date'}"/>
+                          </group>
+                          <group col-span="1">
+                              <field name="end_date" widget="daterange" options="{'related_start_date': 'start_date'}"/>
+                          </group>
+                      </group>
+                      <group>
+
+                          <group>
+                              <field name="payment_type"  widget="radio"/>
+                              <field name="no_employee" attrs="{'invisible': [('payment_type', '=', 'by_total')]}"/>
+                              <field name="voucher_amount_per_employee"
+                                     attrs="{'invisible': [('payment_type', '=', 'by_total')]}"/>
+                              <field name="total_voucher_amount"
+                                     attrs="{'invisible': [('payment_type', '=', 'by_employee')]}"/>
+
+                          </group>
+                          <group>
+
+
+                              <field name="course" required="1"/>
+
+                          </group>
+                      </group>
+
+
+                      <notebook>
+                          <page string="Training details">
+                              <field name="line_ids" readonly="1">
+                                  <tree editable="top">
+                                      <field name="course"/>
+                                      <field name="employees" type="char" widget="many2many_tags"/>
+                                      <field name="count" type="char"/>
+                                      <field name="date_from" type="char"/>
+                                      <field name="date_to"/>
+                                      <field name="state"/>
+                                  </tree>
+                              </field>
+                          </page>
+                          <page string="Accounting">
+                              <group>
+                                  <group>
+                                      <field name="voucher" readonly="1"/>
+                                  </group>
+                                  <group>
+                                      <field name="account_id" groups="account.group_account_user"/>
+                                        <!-- domain="[('user_type_id','=','Expenses')]" /> -->
+                                      <field name="account_analytic_id" groups="account.group_account_user"/>
+                                  </group>
+
+                              </group>
+
+                          </page>
+                          <page string="Evaluation">
+                              <group>
+                                  <field name="employee_evaluation_template"/>
+                                  <field name="manager_evaluation_template"/>
+                              </group>
+                          </page>
+                      </notebook>
+                  </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+              </form>
+          </field>
+      </record>
+
+    <record id="view_res_config_settings_view_form_inherit_training_accounts" model="ir.ui.view">
+            <field name="name">training.accounts.form</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@data-key='hr']" position="inside">
+                        <h2>Training Accounts</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-lg-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <div>
+                                        <span class="o_form_label">Training Analytic Account</span>
+                                        <field name="training_account_analytic_id"/>
+                                        <br/>
+                                        <span class="o_form_label">Training Account</span>
+                                        <field name="training_account_id" />
+                                        <!-- domain="[('user_type_id','=','Expenses')]"  -->
+                                    </div>
+                                    <div>
+                                        <field name="company_id" invisible="1"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </xpath>
+            </field>
+        </record>
+
+      <record model="ir.ui.view" id="view_partner_form_inherited_hr_training">
+            <field name="name">view.partner.form.inherited.hr.training</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//field[@name='vat']" position="after">
+                    <!-- <field name="supplier_rank" invisible="1"/> -->
+                    <field name="is_training_center" />
+                    <!-- attrs="{'invisible':[('supplier_rank','=', 0)]}" -->
+              </xpath>
+            </field>
+        </record>
+
+ <record model="ir.ui.view" id="hr_training_plan.form">
+      <field name="name">hr_training_plan list</field>
+      <field name="model">hr.training.plan</field>
+      <field name="arch" type="xml">
+        <form>
+          <header>
+                <button name="action_confirm" string="Confirm" type="object"  class="oe_highlight" attrs="{'invisible': [('state' ,'!=','draft')]}"/>
+                <!-- groups='hr_custom.group_hr_department_manager' -->
+                <button name="action_approve" string="approve" type="object" attrs="{'invisible': [('state' ,'!=','confirmed')]}"/>
+                <!--  groups="hr_custom.group_hr_general_manager"  -->
+                <button name="action_draft" string="Set To Draft" type="object"  attrs="{'invisible': [('state' ,'=','draft')]}"/>
+<!--                <button name="action_cancel" string="Cancel" states="pending" type="object"  groups="hr_appraisal.group_hr_appraisal_user"/>-->
+                <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,approved" options="{'fold_field': 'fold'}"/>
+            </header>
+          <sheet>
+            <div class="oe_title">
+               <h1>
+                      <field name="sequence" readonly="1"/>
+                </h1>
+             </div>
+            <group>
+                <field name="department" attrs="{'readonly':[('state','!=','draft')]}"/>
+            </group>
+              <group col-span="2">
+                  <group col-span="1"><field name="start_date" widget="daterange" options="{'related_end_date': 'end_date'}" attrs="{'readonly':[('state','!=','draft')]}"/></group>
+                  <group col-span="1"><field name="end_date" widget="daterange" options="{'related_start_date': 'start_date'}" attrs="{'readonly':[('state','!=','draft')]}"/></group>
+              </group>
+
+
+                <notebook>
+                        <page string="training details">
+                            <!-- you can display child data like code below -->
+                            <field name="line_ids" context="{'default_department':department, 'default_date_from':start_date, 'default_date_to':end_date, 'default_state':'planned'}" attrs="{'readonly':[('state','!=','draft')]}">
+                                <tree editable="top">
+                                    <field name="course"/>
+                                    <field name="employees" type="char" widget="many2many_tags"/>
+                                    <field name="count" type="char"/>
+                                    <field name="date_from" type="char"/>
+                                    <field name="date_to"/>
+                                    <field name="state" readonly="1" force_save="1"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+       </sheet>
+          <div class="oe_chatter">
+              <field name="message_follower_ids" groups="base.group_user"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
+        </form>
+      </field>
+    </record>
+
+      <record model="ir.ui.view" id="hr_training_plan.search">
+      <field name="name">hr_training_plan.search </field>
+      <field name="model">hr.training.plan</field>
+      <field name="arch" type="xml">
+              <search>
+                  <field name="department"/>
+                  <field name="start_date"/>
+                  <field name="end_date"/>
+                  <field name="sequence"/>
+                  <filter string="Confirmed" domain="[('state','=','confirmed')]" name="confirmed"/>
+                  <filter string="Draft" domain="[('state','=','draft')]" name="Draft"/>
+                  <filter string="Approved" domain="[('state','=','approved')]" name="Approved"/>
+                  <group expand="0" string="Group By">
+                        <filter string="Department" name="department" context="{'group_by': 'department'}"></filter>
+                        <filter string="State" name="state" context="{'group_by': 'state'}"></filter>
+                    </group>
+              </search>
+      </field>
+      </record>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="hr_training_plan.action_window">
+      <field name="name">Training Plan</field>
+      <field name="res_model">hr.training.plan</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+      <record model="ir.actions.act_window" id="hr_training_plan.training_plan_act_window">
+          <field name="name">Training Plan Execution</field>
+          <field name="res_model">hr.training.execution</field>
+          <field name="view_mode">tree,form</field>
+      </record>
+
+      <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="hr_training_plan.action_server">
+      <field name="name">hr_training_plan server</field>
+      <field name="model_id" ref="model_hr_training_plan_hr_training_plan"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+
+<!--    <menuitem name="training plan" id="hr_training_plan.menu_root"/>-->
+
+    <!-- menu categories -->
+
+    <menuitem name="Training Plan" id="hr_training_plan.menu_1" parent="hr_training.menu_root" action="hr_training_plan.action_window" sequence="3"/>
+    <menuitem name="Training Execution" id="hr_training_plan.menu_training_execution" parent="hr_training.menu_root" action="hr_training_plan.training_plan_act_window" sequence="4"
+                groups="hr.group_hr_user,hr.group_hr_manager"/>
+/>
+<!--    <menuitem name="Menu 2" id="hr_training_plan.menu_2" parent="hr_training_plan.menu_root"/>-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="hr_training_plan.menu_1_list" parent="hr_training_plan.menu_1"
+              action="hr_training_plan.action_window"/>
+    <menuitem name="Server to list" id="hr_training_plan" parent="hr_training_plan.menu_2"
+              action="hr_training_plan.action_server"/>
+-->
+  </data>
+</odoo>

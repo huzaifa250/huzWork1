@@ -1,0 +1,226 @@
+
+<odoo>
+<data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="hr_training.list">
+      <field name="name">training course list</field>
+      <field name="model">hr.training.course</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="code"/>
+           <field name="course_type" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="hr_training_form_view" model="ir.ui.view">
+			<field name="name">training course form view</field>
+			<field name="model">hr.training.course</field>
+			<field name="arch" type="xml">
+                <form >
+					<sheet>
+
+                               <group>
+                                   <field name="name"/>
+
+                               </group>
+                        <group col-span="2">
+                            <group col-span="1"><field name="code"/></group>
+                            <group col-span="1"><field name="course_type" widget="many2many_tags" /></group>
+
+                        </group>
+
+						 	<group>
+                                <field name="description"/>
+                            </group>
+						 	<group>
+
+
+						 	</group>
+					</sheet>
+                    <div class="oe_chatter">
+              <field name="message_follower_ids" groups="base.group_user"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
+				</form>
+			</field>
+		</record>
+<record id="hr_training_course_search" model="ir.ui.view">
+  <field name="name">hr.training.course.search</field>
+  <field name="model">hr.training.course</field>
+  <field name="arch" type="xml">
+    <search string="Search">
+      <field name="name"></field>
+         <field name="code"></field>
+    </search>
+  </field>
+</record>
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="hr_training.action_window">
+      <field name="name">Training Courses</field>
+      <field name="res_model">hr.training.course</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+  <record model="ir.actions.act_window" id="hr_training_action_course_type">
+      <field name="name">Training Courses Types</field>
+      <field name="res_model">hr.training.course.type</field>
+      <field name="view_mode">tree</field>
+    </record>
+    <record model="ir.ui.view" id="hr_test">
+      <field name="name">hr_training list</field>
+      <field name="model">hr.training.course.type</field>
+      <field name="arch" type="xml">
+        <tree editable="top">
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+
+
+<record model="ir.actions.act_window" id="hr_training_action_request">
+      <field name="name">Training Requests</field>
+      <field name="res_model">hr.training</field>
+      <field name="view_mode">tree,form</field>
+    <field name="context">{'search_default_state':1,'search_default_state_not_planned':1,'default_state':'draft'}</field>
+    </record>
+
+
+
+          <record model="ir.ui.view" id="hr_request">
+      <field name="name">Training Request</field>
+      <field name="model">hr.training</field>
+      <field name="arch" type="xml">
+        <tree decoration-danger="state =='cancel'" decoration-info="state=='draft'" decoration-muted="state=='executed'" decoration-bf="state=='planned'">
+
+          <field name="department"/>
+            <field name="course"/>
+            <field name="count" />
+            <field name="date_from"/>
+            <field name="date_to"/>
+            <field name="state"/>
+
+
+        </tree>
+      </field>
+    </record>
+      <record id="hr_training_search" model="ir.ui.view">
+            <field name="name">hr.training.form.search</field>
+            <field name="model">hr.training</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="course"></field>
+                    <field name="department"></field>
+                    <field name="date_from"></field>
+                    <filter string="Course" domain="[('course', '!=', '')]" name="course"></filter>
+                    <filter string="Department" domain="[('department', '!=', '')]" name="department"></filter>
+                    <filter string="Training Request" name="state_not_planned" domain="[('state','!=','planned')]"/>
+                    <filter string="Date From"  name="date_from" date="date_from"></filter>
+                    <filter string="Date To"  name="date_to" date="date_to"></filter>
+                    <filter string="Draft" name="state_draft" domain="[('state','=','draft')]"/>
+                    <filter string="Confirmed" name="state_confirmed" domain="[('state','=','confirmed')]" />
+                    <filter string="Executed" name="state_excuted" domain="[('state','=','executed')]"/>
+                    <filter  string="Planned" name="state_planned" domain="[('state','=','planned')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Department" name="department" context="{'group_by': 'department'}"></filter>
+                        <filter string="Course" name="course" context="{'group_by': 'course'}"></filter>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+<!-- Add new menu Planned Training Requests under Training (default filter " Planned") -->
+<record model="ir.actions.act_window" id="hr_training_action_planned">
+      <field name="name">Training Requests</field>
+      <field name="res_model">hr.training</field>
+      <field name="view_mode">tree,form</field>
+    <field name="context">{'search_default_state':1,'search_default_state_planned':1,'create':False}</field>
+    </record>
+
+
+
+<record id="hr_training_course_form_view" model="ir.ui.view">
+			<field name="name">training request</field>
+			<field name="model">hr.training</field>
+			<field name="arch" type="xml">
+				<form string="training request form" >
+                   <header>
+                      <button name="action_plan" id="action_plan" string="plan" attrs="{'invisible': [('state' ,'!=','draft')]}" type="object" />
+                    <button name="action_confirm" id="action_confirm" string="Confirm"   attrs="{'invisible': [('state' ,'!=','planned')]}" type="object" />
+                    <!-- groups="hr_custom.group_hr_department_manager" -->
+<!--                    <button name="action_execute" id="action_execute" string="Execute"  attrs="{'invisible': [('state' ,'!=','confirmed')]}" groups="hr.group_hr_user"    class="btn-primary" type="object"/>-->
+                    <button name="action_cancel"  type="object" string="Cancel" attrs="{'invisible': ['|',('state' ,'=','draft'),('state','=','cancel')]}"  class="btn-danger" />
+                       <button name="action_draft" attrs="{'invisible': [('state' ,'!=','cancel')]}" type="object" string="Set to draft" />
+<!--attrs="{'invisible': [('department.manger_id' ,'!=',user.id)]}"-->
+                       <field name="state" widget="statusbar"  />
+                    </header>
+                    <sheet>
+                        <group col-span="2">
+                            <group col-span="1">
+                                <field name="department" />
+                                <field name="course"/>
+
+                            </group>
+                        <group col-span="1">
+                            <field name="count"/>
+
+    	                </group>
+                        </group>
+                        <group col-span="2">
+                            <group col-span="1"><field name="date_from"/></group>
+                            <group col-span="1"><field name="date_to"/></group>
+                        </group>
+                        <notebook>
+                        <page string="Employees">
+                            <!-- you can display child data like code below -->
+                            <field name="employees" widget="many2many"/>
+
+
+                        </page>
+                    </notebook>
+					</sheet>
+              <div class="oe_chatter">
+              <field name="message_follower_ids" groups="base.group_user"/>
+              <field name="activity_ids"/>
+              <field name="message_ids"/>
+          </div>
+				</form>
+			</field>
+		</record>
+    <!-- Top menu item -->
+
+    <menuitem name="Training" id="hr_training.menu_root" web_icon="hr_training,static/description/icon.png"
+                          groups="hr.group_hr_user,hr.group_hr_manager"/>
+                          <!-- hr_custom.group_hr_general_manager,hr_custom.group_hr_department_manager -->
+
+
+    <!-- menu categories -->
+
+    <menuitem name="Training Request " id="hr_training.menu_1" parent="hr_training.menu_root" sequence="1"  />
+
+    <menuitem name="Training Requests" id="hr_training.request" parent="hr_training.menu_1" action="hr_training_action_request"/>
+    <menuitem name="Planned Training Requests" id="hr_training_planned" parent="hr_training.menu_1"
+              action="hr_training_action_planned"/>
+    <!-- actions -->
+    <menuitem name="Configuration" id="hr_training.config" parent="hr_training.menu_root"
+            groups="hr.group_hr_user,hr.group_hr_manager"/>
+    <menuitem name="Training Course" id="hr_training.course_types" parent="hr_training.config"
+              action="hr_training.action_window"/>
+
+
+
+
+      <menuitem name="Course Types" id="hr_training_course_type_menu" parent="hr_training.config"
+              action="hr_training_action_course_type"/>
+
+
+
+
+</data>
+</odoo>

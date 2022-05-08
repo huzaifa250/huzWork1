@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ir_cron_auto_annual_allocation" model="ir.cron">
+            <field name="name">Annual Leave Auto Allocation</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+            <field name="model_id" ref="model_hr_leave_allocation"/>
+            <field name="code">model._auto_annual_allocation()</field>
+        </record>
+    </data>
+</odoo>

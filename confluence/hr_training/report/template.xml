@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <record id="action_student_id_card" model="ir.actions.report">
+   <field name="name">Training Request </field>
+   <field name="model">hr.training</field>
+   <field name="report_type">qweb-pdf</field>
+   <field name="report_name">hr_training.training_request_report_template</field>
+   <field name="report_file">hr_training.training_request_report_template</field>
+       <field name="binding_model_id" ref="model_hr_training"/>
+    </record>
+<template id="training_request_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+
+                        <form>
+                            <table class="table table-condensed" style="border: 3px solid Darkblue;
+                                                                border-collapse: collapse;">
+                                <h3>Training Requests</h3>
+                                <thead>
+                                    <tr style="background:#DCDCDC">
+                                        <th class="text-left">
+                                            <strong>
+                                                Department
+                                            </strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>course</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong>No Employees</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong> Date duration</strong>
+                                        </th>
+                                        <th class="text-left">
+                                            <strong> Request State</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody style="color: #D8F0DA
+                            background: transparent">
+                                    <t t-foreach="docs" t-as="doc">
+                                    <t>
+                                        <tr align="center" style="color:red;">
+                                        </tr>
+
+
+                                        <tr>
+                                            <td class="text-left">
+                                                <span t-field="doc.department"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="doc.course"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="doc.count"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="doc.date_from"/>-<span t-field="doc.date_to"/>
+                                            </td>
+                                            <td class="text-left">
+                                                <span t-field="doc.state"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                     </t>
+                                </tbody>
+                            </table>
+
+
+                        </form>
+                    </t>
+                </t>
+
+        </template>
+
+    </data>
+</odoo>

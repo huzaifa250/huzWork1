@@ -1,0 +1,13 @@
+<odoo>
+
+      <record id="ir_send_notify_chattettrtt55" model="ir.cron">
+        <field name="name">Send notification to hr new 2</field>
+        <field name="model_id" ref="model_hr_training_execution"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+          <field name="numbercall">-1</field>
+          <field name="code">model.send_notification_to_hr_in_chatterr()</field>
+        <field name="state">code</field>
+    </record>
+
+</odoo>
