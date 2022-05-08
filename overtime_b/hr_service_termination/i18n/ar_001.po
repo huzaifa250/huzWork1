@@ -1,0 +1,345 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* hr_service_termination
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-29 06:14+0000\n"
+"PO-Revision-Date: 2019-09-29 06:14+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: hr_service_termination
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Approve"
+msgstr "قبول"
+
+#. module: hr_service_termination
+#: selection:hr.service.termination,state:0
+msgid "Approved"
+msgstr "قبول"
+
+#. module: hr_service_termination
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Calculate payslip"
+msgstr "حساب المرتب"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "Cancelled"
+msgstr "ملغي"
+
+#. module: hr_service_termination
+#: model_terms:ir.actions.act_window,help:hr_service_termination.action_service_termination_reasons
+msgid "Create Service Termination Reasons."
+msgstr "إنشاء أسباب انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model_terms:ir.actions.act_window,help:hr_service_termination.action_service_termination
+msgid "Create Service Termination."
+msgstr "إنشاء انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__create_uid
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__create_uid
+msgid "Created by"
+msgstr "أنشئ بواسطة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__create_date
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__create_date
+msgid "Created on"
+msgstr "أنشئ في"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__date_join
+msgid "Date of Join"
+msgstr "تاريخ الانضمام"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__department_id
+msgid "Department"
+msgstr "القسم"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__display_name
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: hr_service_termination
+#: selection:hr.service.termination,state:0
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Done"
+msgstr "تم"
+
+#. module: hr_service_termination
+#: selection:hr.service.termination,state:0
+msgid "Draft"
+msgstr "مبدئي"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: hr_service_termination
+#: model:ir.model,name:hr_service_termination.model_hr_contract
+msgid "Employee Contract"
+msgstr "عقد الموظف"
+
+#. module: hr_service_termination
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Employee Information"
+msgstr "معلومات الموظف"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "Expired"
+msgstr "منتهي الصلاحية"
+
+#. module: hr_service_termination
+#: selection:hr.payslip.line,use_type:0
+#: selection:hr.salary.rule,use_type:0
+msgid "General"
+msgstr "عام"
+
+#. module: hr_service_termination
+#: model:ir.model,name:hr_service_termination.model_hr_payslip
+msgid "HR Payslipe"
+msgstr ""
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__id
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__id
+msgid "ID"
+msgstr "المعرف"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__job_id
+msgid "Job"
+msgstr "الوظيفة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination____last_update
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons____last_update
+msgid "Last Modified on"
+msgstr "آخر تعديل في"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__write_uid
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__write_date
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: hr_service_termination
+#: selection:hr.payslip.line,use_type:0
+#: selection:hr.salary.rule,use_type:0
+msgid "Loan"
+msgstr "الدين"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__name
+msgid "Name"
+msgstr "الاسم"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "New"
+msgstr "جديد"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "Offer"
+msgstr ""
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__payslip_ids
+msgid "Payslip"
+msgstr ""
+
+#. module: hr_service_termination
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_reasons_form
+msgid "Rules"
+msgstr "القواعد"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "Running"
+msgstr "جاري"
+
+#. module: hr_service_termination
+#: selection:hr.payslip,type:0
+#: selection:hr.payslip.line,use_type:0
+#: selection:hr.salary.rule,use_type:0
+msgid "Salary"
+msgstr "المرتب"
+
+#. module: hr_service_termination
+#: model:ir.model,name:hr_service_termination.model_hr_salary_rule
+msgid "Salary Rule"
+msgstr "قاعدة المرتب"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination_reasons__rule_ids
+msgid "Salary Rules"
+msgstr "قواعد المرتبات"
+
+#. module: hr_service_termination
+#: code:addons/hr_service_termination/models/payslip.py:41
+#, python-format
+msgid "Salary Slip of %s for %s"
+msgstr ""
+
+#. module: hr_service_termination
+#: selection:hr.payslip,type:0
+#: model:ir.actions.act_window,name:hr_service_termination.action_service_termination
+#: model:ir.ui.menu,name:hr_service_termination.menu_service_termination
+#: model:ir.ui.menu,name:hr_service_termination.menu_service_termination_config
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Service Termination"
+msgstr "انهاء الخدمة"
+
+#. module: hr_service_termination
+#: model:ir.actions.act_window,name:hr_service_termination.action_service_termination_reasons
+#: model:ir.ui.menu,name:hr_service_termination.menu_service_termination_reasons
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_reasons_form
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_reasons_tree
+msgid "Service Termination Reasons"
+msgstr "أسباب إنتهاء الخدمة"
+
+#. module: hr_service_termination
+#: code:addons/hr_service_termination/models/hr_service_termination.py:26
+#, python-format
+msgid "Service Termination Slip of %s "
+msgstr ""
+
+#. module: hr_service_termination
+#: code:addons/hr_service_termination/models/payslip.py:44
+#, python-format
+msgid "Service Termination Slip of %s for %s"
+msgstr ""
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_contract__service_years
+msgid "Service Years"
+msgstr "سنين الخدمة"
+
+#. module: hr_service_termination
+#: selection:hr.payslip.line,use_type:0
+#: selection:hr.salary.rule,use_type:0
+msgid "Special"
+msgstr "خاص"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__state
+msgid "State"
+msgstr "الحالة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_contract__state
+msgid "Status"
+msgstr "الحالة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,help:hr_service_termination.field_hr_contract__state
+msgid "Status of the contract"
+msgstr "حالة العقد"
+
+#. module: hr_service_termination
+#: selection:hr.service.termination,state:0
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Submit"
+msgstr "إرسال"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "Terminated"
+msgstr "منتهي"
+
+#. module: hr_service_termination
+#: selection:hr.payslip.line,use_type:0
+#: selection:hr.salary.rule,use_type:0
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_payslip__termination_id
+msgid "Termination"
+msgstr "انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__termination_date
+msgid "Termination Date"
+msgstr "تاريخ انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Termination Information"
+msgstr "معلومات انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__name
+msgid "Termination Name"
+msgstr "اﻹسم"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_payslip_line__termination_reason_id
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_salary_rule__termination_reason_id
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__reason_id
+msgid "Termination Reason"
+msgstr "سبب انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model_terms:ir.ui.view,arch_db:hr_service_termination.view_service_termination_form
+msgid "Termination payslip"
+msgstr "راتب نهاية الخدمة"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "To Renew"
+msgstr "للتجديد"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_payslip__type
+msgid "Type"
+msgstr "النوع"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_payslip_line__use_type
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_salary_rule__use_type
+msgid "Use Type"
+msgstr "نوع الاستخدام"
+
+#. module: hr_service_termination
+#: selection:hr.contract,state:0
+msgid "Waiting Service Termination"
+msgstr "في انتظار انتهاء الخدمة"
+
+#. module: hr_service_termination
+#: model:ir.model.fields,field_description:hr_service_termination.field_hr_service_termination__working_days
+msgid "Working Days"
+msgstr "أيام العمل"
+
+#. module: hr_service_termination
+#: model:ir.model,name:hr_service_termination.model_hr_service_termination
+msgid "hr.service.termination"
+msgstr ""
+
+#. module: hr_service_termination
+#: model:ir.model,name:hr_service_termination.model_hr_service_termination_reasons
+msgid "hr.service.termination.reasons"
+msgstr ""
+
+#. module: hr_service_termination
+#: selection:hr.service.termination,state:0
+msgid "waiting service termination calculation"
+msgstr "في انتظار حسابات نهاية الخدمة"
