@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_re_registration_tree" model="ir.ui.view">
+            <field name="name">re.registration.tree</field>
+            <field name="model">re.registration</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <tree string="Re-Registration">
+                    <field name="request_date"/>
+                    <field name="parent_id"/>
+                    <field name="validity_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_re_registration_form" model="ir.ui.view">
+            <field name="name">re.registration.form</field>
+            <field name="model">re.registration</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <form string="Re-Registration">
+                    <header>
+                        <button name="to_wait_list" string="Confirm" type="object" states="draft" class="oe_highlight"/>
+                        <button name="to_register" string="Register" type="object" states="wait_list" class="oe_highlight"/>
+                        <button name="create_invoice" string="Create Parent Invoices" type="object" states="register"/>
+                        <!-- <button name="to_done" string="Complete" type="object" states="register" class="oe_highlight"/> -->
+                        <button name="to_cancel" string="Cancel Registration" type="object" states="wait_list,register"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,wait_list,register,done"/>
+                    </header>
+                    <sheet>
+                        <div name="smart_button" class="oe_button_box">
+                            <button class="oe_stat_button" type="object"
+                                name="action_view_invoice"
+                                icon="fa-pencil-square-o">
+                                <field string="Invoices" name="total_invoiced" widget="statinfo"/>
+                            </button>
+                        </div>
+                            
+                        <div class="oe_title">
+                            <h2>
+                                <field name="parent_id" placeholder="Parent" style="padding-right:10px"/>
+                            </h2>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="request_date"/>
+                            <field name="validity_date"/>
+                        </group>
+                        <notebook>
+                            <page string="Students"> 
+                                <field name="student_ids" >
+                                    <tree editable="bottom">
+                                        <field name="student_id"/>
+                                        <!-- <field name="academic_years_id"/> -->
+                                        <field name="level_id"/>
+                                        <field name="class_id"/>
+                                        <!-- <field name="batch_id"/> -->
+                                        <field name="register_id"/>
+                                        <!-- <field name="new_academic_years_id"/> -->
+                                        <field name="new_level_id"/>
+                                        <field name="new_class_id" domain="[('level_id','=',new_level_id)]"/>
+                                        <field name="new_batch_id" context="{'level_id': new_level_id,'get_parent_batch':1}"/>
+                                        <field name="student_behavior"/>
+                                        <field name="student_commitment"/>
+                                        <field name="final_decision"/>
+                                        <field name="reason"/>
+                                        <!-- <field name="invoice_id1"/>
+                                        <field name="invoice_id2"/> -->
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Fees Details"> 
+                                <field name="fees_detail_ids">
+                                    <tree editable="bottom">
+                                        <field name="lable"/>
+                                        <field name="percentage"/>
+                                        <field name="dedlines"/>
+                                    </tree>
+                                </field>
+                                <group string="Admission Office">
+                                    <field name="coordinator_name"/>
+                                    <field name="admission_office_name"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_re_registration_search" model="ir.ui.view">
+            <field name="name">re.registration.search</field>
+            <field name="model">re.registration</field>
+            <field name="priority" eval="8"/>
+            <field name="arch" type="xml">
+                <search string="Re-Registration">
+                    <field name="parent_id"/>
+                    <field name="request_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_open_re_registration_view">
+            <field name="name">Re-Registration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">re.registration</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_re_registration_search"/>
+            <field name="domain">[]</field>
+            <field name="context">{}</field>
+        </record>
+
+    </data>
+</odoo>

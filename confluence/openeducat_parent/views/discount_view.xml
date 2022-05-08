@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_discount_tree" model="ir.ui.view">
+            <field name="name">parent.discount.conf.tree</field>
+            <field name="model">parent.discount.conf</field>
+            <field name="arch" type="xml">
+                <tree string="Parent Discount">
+                    <field name="name"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_discount_form" model="ir.ui.view">
+            <field name="name">parent.discount.conf.form</field>
+            <field name="model">parent.discount.conf</field>
+            <field name="arch" type="xml">
+                <form string="Parent Discount">
+                    <header>
+                        <button 
+                            type="object" name="to_confirm"
+                            string="Confirm"
+                            groups="openeducat_parent.group_op_parent"
+                            class="oe_highlight"
+                            states="draft"
+                        />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title w-auto">
+                            <h2>
+                                <field name="name" placeholder="Description" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </h2>
+                        </div>
+                        <group>
+                            <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <separator string="Discounts"/>
+                        <field name="line_ids" attrs="{'readonly': [('state', '!=', 'draft')]}">
+                            <tree editable="bottom">
+                                <field name="childs_no" required="1"/>
+                                <field name="discount" required="1"/>
+                                <field name="is_free"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="act_discount_parent_view">
+            <field name="name">Parent Discount</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">parent.discount.conf</field>
+            <field name="binding_view_types">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

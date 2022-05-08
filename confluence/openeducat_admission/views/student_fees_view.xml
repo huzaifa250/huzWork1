@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_move_form_inh" model="ir.ui.view">
+            <field name="name">account.move.form</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='payment_reference']" position="after">
+                    <field name="student_id" attrs="{'invisible':[('student_id','=',False)]}" readonly="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_op_student_form_fees_inherit" model="ir.ui.view">
+            <field name="name">op.student.form.fees.inherit</field>
+            <field name="model">op.student</field>
+            <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='smart_button']" position="inside">
+                    <button class="oe_stat_button" type="object"
+                            name="action_view_invoice"
+                            icon="fa-pencil-square-o">
+                        <field string="Invoices" name="total_invoiced" widget="statinfo"/>
+                    </button>
+                </xpath>
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Fees Collection Details" >
+                        <!-- <field name="level_visible"/> -->
+                        <field name="fees_detail_ids" readonly="1">
+                            <tree string="Fees Collection Details" editable="top">
+                                <field name="date"/>
+                                <field name="percentage"/>
+                                <field name="amount"/>
+                                <field name="level_id"/>
+                                <field name="paid"/>
+                                <field name="payment_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

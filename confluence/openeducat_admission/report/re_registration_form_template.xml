@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_re_registration_form_template_doc">
+		<t t-call="web.html_container">
+			<t t-call="web.internal_layout">
+				<div class="page">
+					<span style="font-weidght: bold;">Date:</span>
+					<span style="font-weidght: bold;margin-left:35px;" t-esc="o.request_date"/>
+					<br/>
+					<h4><center>SUBJECT: Re-Registration Form for Academic Year<span style="margin-left:10px" t-esc="o.request_date.year"/></center></h4>
+					<br/>
+
+					<span style="font-weidght: bold;">Dear Sir/Madam</span>
+					<br/>
+					<span style="font-weidght: bold;">Greeting,</span>
+					<br/><br/>
+
+					<p>
+						This is to kindly request your feedback concerning the <u>status of your child/ren re-registration</u> for the upcoming academic year <span style="margin-left:2px" t-esc="o.request_date.year"/>. Kindly fill the slip below for your children's continuation or discontinuation in th school and send it back to the school office by <span style="margin-left:2px" t-esc="o.validity_date"/>. Further details regarding the payment option are given in this letter.
+					</p>
+
+					<br/>
+					<span style="font-weidght: bold;">Thank you!</span>
+					<br/>
+					<span style="font-weidght: bold;">------------------------------------------------------------------------------------</span>
+					<br/><br/>
+					<u><span style="font-weidght: bold;">Please tick the appropriate response</span>
+					</u>
+					<br/>
+
+					<span style="border:1px solid black;height:22px;width:20px;display:inline-block;"/>
+					<span style="margin-left:10px">Yes, my decision is to join the school for the year <span style="margin-left:2px" t-esc="o.request_date.year"/>, so please save my child/children's place(s).</span><br/>
+
+					<span style="border:1px solid black;height:22px;width:20px;display:inline-block;"/>
+					<span style="margin-left:10px">No, my decision is NOT to join the school for the year <span style="margin-left:2px" t-esc="o.request_date.year"/>, so please do not save my child/children's place(s).</span><br/>
+
+					<span style="border:1px solid black;height:22px;width:20px;display:inline-block;"/>
+					<span style="margin-left:10px">Other, Specify (e.g. new admission, withdrawal of one child, etc.)</span><br/>
+					<span style="font-weidght: bold;">_________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________________</span>
+					<br/>
+					<h4>__________________________________________________________________________________________________</h4>
+					<br/>
+
+					<h5>Please tick as appropriate:</h5>
+					<table class="table table-bordered">
+						<tbody>
+							<tr style="Background-color:#a6a4a4">
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">NO.</span></center>
+								</td>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">FULL NAME</span></center>
+								</td>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">GRADE</span></center>
+								</td>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">REGISTER</span></center>
+								</td>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">WITHDRAW</span></center>
+								</td>
+							</tr>
+							<t t-set="count" t-value="1"/>
+							<t t-foreach="o.student_ids" t-as="student">
+								<tr>
+									<td style="border: 1px solid black;width:10%">
+										<span style="font-weidght: bold;" t-esc="count"></span>
+									</td>
+									<td style="border: 1px solid black;width:45%">
+										<span style="font-weidght: bold;" t-esc="student.student_id.name"></span>
+									</td>
+									<td style="border: 1px solid black;width:15%">
+										<span style="font-weidght: bold;" t-esc="student.new_level_id.name"></span>
+									</td>
+									<td style="border: 1px solid black;width:15%">
+									</td>
+									<td style="border: 1px solid black;width:15%">
+									</td>
+								</tr>
+								<t t-set="count" t-value="count+1"/>
+							</t>
+						</tbody>
+					</table>
+					<br/>
+					<h5>Please note that:</h5>
+					<p>
+						The school <u>CANNOT</u> guarantee the place if the parent(s)/ guradian(s) do not re-register and pay the stipulated fee within the above mentioned date. The school will/may grant any uncovered place(s) to student(s) that are on the school waiting list(s).
+					</p>
+					<p>
+						Even bona fide students of the school will have to qualify to be eligible to continue in the school for the upcoming year. The school will take into consideration the student's attendance, behavior, and commitment to work in academics. The school shall continuosly value parents' involvement and cooperationwith the school in the best interest of the students and the school community.
+					</p>
+					<br/>
+
+					<h5>The fees to be paid will be as follows:</h5>
+					<table class="table table-bordered">
+						<tbody>
+							<tr style="Background-color:#a6a4a4">
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">Installments</span></center>
+								</td>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">Old Admission</span></center>
+								</td>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">Deadlines</span></center>
+								</td>
+							</tr>
+							<t t-foreach="o.fees_detail_ids" t-as="fee">
+								<tr>
+									<td style="border: 1px solid black;width:10%">
+										<span style="font-weidght: bold;" t-esc="fee.lable"></span>
+									</td>
+									<td style="border: 1px solid black;width:45%">
+										<span style="font-weidght: bold;" t-esc="fee.percentage"/>
+										<span style="margin-left:5px">% of tuition fees</span>
+									</td>
+									<td style="border: 1px solid black;width:15%">
+										<span style="font-weidght: bold;" t-esc="fee.dedlines"></span>
+									</td>
+								</tr>
+							</t>
+						</tbody>
+					</table>
+					<br/>
+
+					<h5>Please do not hesitate to contract the CISK office for any further queries.</h5>
+					<span style="font-weidght: bold;">Name:______________________________________,Signature:_______________________,Date:______________________</span><br/>
+
+					<span style="font-weidght: bold;">Your cooperation is hight appreciates, as it enables the school to plan better and get prepared for the upcoming year! </span><br/>
+					<br/>
+					<h4>__________________________________________________________________________________________________</h4>
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">FOR OFFICE USE ONLY</span></center>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<h5>Final Decision:</h5>
+					<span style="margin-left:10px">Accepted</span>
+					<span style="border:1px solid black;height:22px;width:25px;display:inline-block;"/>
+					
+					<span style="margin-left:70px">Rejected</span>
+					<span style="border:1px solid black;height:22px;width:25px;display:inline-block;"/>
+					<br/><br/>
+
+					<h5>Reasons:</h5>
+					<h4>___________________________________________________________________________________</h4>
+					<h4>___________________________________________________________________________________</h4>
+
+					<h5>Coordinator:</h5>
+					<span style="font-weidght: bold;">Name:______________________________________,Signature:_______________________,Date:______________________</span><br/>
+					<h5>Admissions office:</h5>
+					<span style="font-weidght: bold;">Name:______________________________________,Signature:_______________________,Date:______________________</span>
+				</div>
+			</t>
+		</t>
+	</template>
+
+	<template id="report_re_registration_form_template">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="openeducat_admission.report_re_registration_form_template_doc"/>
+			</t>
+		</t>
+	</template>
+</odoo>

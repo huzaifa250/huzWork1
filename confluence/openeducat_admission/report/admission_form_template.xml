@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_admission_form_template_doc">
+		<t t-call="web.html_container">
+			<t t-call="web.internal_layout">
+				<div class="page">
+					<table class="table table-bordered">
+						<tbody>
+							<tr style="Background-color:#a6a4a4">
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">PRE-APPLICATION FORM</span></center>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered;" style="height:1mm;">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Student Name</span>
+								</td>
+								<td colspan="5" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Male/Female</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<t t-if="o.gender == 'f' ">
+										<span style="font-weidght: bold;">Female</span>
+									</t>
+									<t t-if="o.gender == 'm' ">
+										<span style="font-weidght: bold;">Male</span>
+									</t>
+									<t t-if="o.gender == 'o' ">
+										<span style="font-weidght: bold;">Other</span>
+									</t>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Citizenship 1</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<span style="font-weidght: bold;" t-esc="std_citizenship_1"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Citizenship 2</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<span style="font-weidght: bold;" t-esc="std_citizenship_2"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Date of Birth DD/MM/YY</span>
+								</td>
+								<td colspan="5" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.birth_date"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Language</span>
+								</td>
+								<td colspan="5" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.language.name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Home Address</span>
+								</td>
+								<td colspan="5" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.street"></span>,<span style="font-weidght: bold;" t-esc="o.street2"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<t t-if="o.is_transfered">
+						<table class="table table-bordered;" style="height:1mm;">
+							<tbody>
+								<tr>
+									<td style="border: 1px solid black;Background-color:#a6a4a4">
+										<center><span style="font-weidght: bold;">Previous School</span></center>
+									</td>
+								</tr>
+								<tr>
+									<td style="border: 1px solid black;">
+									</td>
+								</tr>
+								<tr>
+									<td style="border: 1px solid black;">
+									</td>
+								</tr>
+								<tr>
+									<td style="border: 1px solid black;">
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</t>
+					<table class="table table-bordered" style="height:1mm;">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Father Name</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Citizenship</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_citizenship"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Occupation</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_occupation"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Telephone</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_telephone"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Mobile</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_mobile"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Email</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_email"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered" style="height:1mm;">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Mother Name</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Citizenship</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_citizenship"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Occupation</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_occupation"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Telephone</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_telephone"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Mobile</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_mobile"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Email</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_email"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered" style="height:1mm;">
+						<tbody>
+							<tr>
+								<td colspan="8" style="border: 1px solid black;Background-color:#a6a4a4">
+									<center><span style="font-weidght: bold;">Subling Age</span></center>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Subling 1</span>
+								</td>
+								<td style="border: 1px solid black;width:10%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_1_age"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Subling 2</span>
+								</td>
+								<td style="border: 1px solid black;width:10%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_2_age"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Subling 3</span>
+								</td>
+								<td style="border: 1px solid black;width:10%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_3_age"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Subling 4</span>
+								</td>
+								<td style="border: 1px solid black;width:10%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_4_age"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br/><br/>
+					<span style="font-weidght: bold;"> With this application you express interest for your child's enrollment in Confluence International School of Khartoum.</span><br/>
+					<span style="font-weidght: bold;"> The school will keep all disclosed information strictly confidential.</span><br/><br/>
+
+					<span style="font-weidght: bold;"> Date:.............................</span>
+					<span style="font-weidght: bold;margin-left:400px"> Signature:.............................</span>
+				</div>
+			</t>
+		</t>
+	</template>
+
+	<template id="report_admission_form_template">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="openeducat_admission.report_admission_form_template_doc"/>
+			</t>
+		</t>
+	</template>
+</odoo>

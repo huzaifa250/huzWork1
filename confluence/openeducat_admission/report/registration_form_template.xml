@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="report_registration_form_template_doc">
+		<t t-call="web.html_container">
+			<t t-call="web.internal_layout">
+				<div class="page">
+					<table class="table table-bordered">
+						<tbody>
+							<tr style="Background-color:#a6a4a4">
+								<td style="border: 1px solid black;">
+									<center><span style="font-weidght: bold;">APPLICATION FOR ADMISSION</span></center>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br/>
+					<div>
+						<div style="float:left">
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">Pre-School IB PYP (3-4 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">Kindergarten 1 IB PYP (4-5 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">Kindergarten 2 IB PYP (5-6 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 1 IB PYP (6-7 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 2 IB PYP (7-8 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 3 IB PYP (8-9 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 4 IB PYP (9-10 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 5 IB PYP (10-11 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 6 IB PYP (11-12 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 7 IB PYP (12-13 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 8 IB PYP (13-14 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 9 IB PYP (14-15 years)</span><br/>
+
+							<span style="margin-left:40px;border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 10 IB PYP (15-16 years)</span><br/>
+						</div>
+						<div style="float:right;margin-right:100px">
+							<div style="margin-top:50px;Background-color:#a6a4a4">Access Programmes</div><br/>
+
+							<span>Pre-IB MYP(12-16 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 6(11-12 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 7(12-13 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 8(13-14 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 9(14-15 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 10(15-16 years)</span><br/>
+
+							<span>Pre-IB DP(16-18 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 11(16-17 years)</span><br/>
+
+							<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+							<span style="margin-left:10px">GR 12(17-18 years)</span><br/>
+						</div>
+					</div>
+					<br/><br/><br/>
+					<br/><br/><br/>
+					<table class="table table-bordered" style="margin-top:250px;">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Student Name</span>
+								</td>
+								<td colspan="5" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Male/Female</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<t t-if="o.gender == 'f' ">
+										<span style="font-weidght: bold;">Female</span>
+									</t>
+									<t t-if="o.gender == 'm' ">
+										<span style="font-weidght: bold;">Male</span>
+									</t>
+									<t t-if="o.gender == 'o' ">
+										<span style="font-weidght: bold;">Other</span>
+									</t>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Citizenship 1</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<span style="font-weidght: bold;" t-esc="std_citizenship_1"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Citizenship 2</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<span style="font-weidght: bold;" t-esc="std_citizenship_2"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Date of Birth DD/MM/YY</span>
+								</td>
+								<td style="border: 1px solid black;width:15%">
+									<span style="font-weidght: bold;" t-esc="o.birth_date"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:15%">
+									<span style="font-weidght: bold;">Place of Birth</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:60%">
+									<span style="font-weidght: bold;" t-esc="o.place_of_birth"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Home Address</span>
+								</td>
+								<td colspan="2" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.street"></span>,<span style="font-weidght: bold;" t-esc="o.street2"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Home Telephone</span>
+								</td>
+								<td colspan="2" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.phone"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Area</span>
+								</td>
+								<td colspan="5" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.area"></span>,<span style="font-weidght: bold;" t-esc="o.street2"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<t t-if="o.is_transfered">
+						<h5>Previous School:</h5>
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td colspan="2" style="border: 1px solid black;Background-color:#a6a4a4">
+										<center><span style="font-weidght: bold;">School Name</span></center>
+									</td>
+									<td colspan="2" style="border: 1px solid black;Background-color:#a6a4a4">
+										<center><span style="font-weidght: bold;">Classes</span></center>
+									</td>
+								</tr>
+								<t t-foreach="prev_result_ids" t-as="line">
+									<tr>
+										<td colspan="2" style="border: 1px solid black;">
+											<span style="font-weidght: bold;" t-esc="line.school_name"></span>
+										</td>
+										<td colspan="2" style="border: 1px solid black;">
+											<span style="font-weidght: bold;" t-esc="line.classes"></span>
+										</td>
+									</tr>
+								</t>
+								<tr>
+									<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+										<span style="font-weidght: bold;">Language</span>
+									</td>
+									<td colspan="3" style="border: 1px solid black;width:75%">
+										<span style="font-weidght: bold;" t-esc="o.language.name"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</t>
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Father Name</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Citizenship</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_citizenship"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Place of Birth</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_birth_place"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Occupation</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_occupation"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Title</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_occupation_tit"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Company/Business</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_company"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Work Telephone</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_telephone"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Mobile</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.father_mobile"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Email</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.father_email"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Mother Name</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_name"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Citizenship</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_citizenship"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Place of Birth</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_birth_place"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Occupation</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_occupation"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Title</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_occupation_tit"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Company/Business</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_company"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Work Telephone</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_telephone"></span>
+								</td>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Mobile</span>
+								</td>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.mother_mobile"></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Email</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+									<span style="font-weidght: bold;" t-esc="o.mother_email"></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br/><br/>
+					<h5>Student's Custody:</h5>
+					<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+					<span style="margin-left:10px">Joint</span><br/>
+					<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+					<span style="margin-left:10px">Father</span><br/>
+					<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+					<span style="margin-left:10px">Mother</span><br/>
+					<span style="border:1px solid black;height:22px;width:60px;display:inline-block;"/>
+					<span style="margin-left:10px">Other</span>
+					<t t-if="o.student_custody == 'other' ">
+						<span style="margin-left:10px" t-esc="o.other_custody"></span>
+					</t>
+					<t t-else="">
+						<span style="margin-left:10px">....................</span>
+					</t>
+
+					<br/><br/><br/>
+					<h5>Are there any siblings?</h5>
+					<table class="table table-bordered">
+						<tbody>
+							<tr>
+								<td style="border: 1px solid black;Background-color:#a6a4a4;width:25%">
+									<span style="font-weidght: bold;">Age</span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;Background-color:#a6a4a4;width:75%">
+									<span style="font-weidght: bold;">School</span>
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_1_age"></span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_2_age"></span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+								</td>
+							</tr>
+							<tr>
+								<td style="border: 1px solid black;width:25%">
+									<span style="font-weidght: bold;" t-esc="o.silbing_3_age"></span>
+								</td>
+								<td colspan="3" style="border: 1px solid black;width:75%">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br/><br/>
+					<span style="font-weidght: bold;"> With this application you express interest for your child's enrollment in Confluence International School of Khartoum.</span><br/>
+					<span style="font-weidght: bold;"> The school will keep all disclosed information strictly confidential.</span><br/><br/>
+
+					<span style="font-weidght: bold;"> Date:.............................</span>
+					<span style="font-weidght: bold;margin-left:400px"> Signature:.............................</span>
+				</div>
+			</t>
+		</t>
+	</template>
+
+	<template id="report_registration_form_template">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="openeducat_admission.report_registration_form_template_doc"/>
+			</t>
+		</t>
+	</template>
+</odoo>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="op_batch_1" model="op.batch">
+            <field name="code">level-sb1</field>
+            <field name="name">level-batch-Sem-1</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="level_id" ref="op_level_2"/>
+        </record>
+        <record id="op_batch_2" model="op.batch">
+            <field name="code">level-sb2</field>
+            <field name="name">level-batch-Sem-2</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="level_id" ref="op_level_3"/>
+        </record>
+        <record id="op_batch_3" model="op.batch">
+            <field name="code">level-b2</field>
+            <field name="name">level-batch-2</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-05 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-05 %H:%M')"/>
+            <field name="level_id" ref="op_level_4"/>
+        </record>
+        <record id="op_batch_4" model="op.batch">
+            <field name="code">level-b3</field>
+            <field name="name">level-batch-3</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-11 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-11 %H:%M')"/>
+            <field name="level_id" ref="op_level_5"/>
+        </record>
+        <record id="op_batch_5" model="op.batch">
+            <field name="code">level-b4</field>
+            <field name="name">level-batch-4</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-01 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-01 %H:%M')"/>
+            <field name="level_id" ref="op_level_6"/>
+        </record>
+        <record id="op_batch_6" model="op.batch">
+            <field name="code">level-b5</field>
+            <field name="name">level-batch-5</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="level_id" ref="op_level_7"/>
+        </record>
+        <record id="op_batch_7" model="op.batch">
+            <field name="code">level-b6</field>
+            <field name="name">level-batch-6</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-05-02 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-02 %H:%M')"/>
+            <field name="level_id" ref="op_level_8"/>
+        </record>
+        <record id="op_batch_8" model="op.batch">
+            <field name="code">level-b7</field>
+            <field name="name">level-batch-7</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-12 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-12 %H:%M')"/>
+            <field name="level_id" ref="op_level_9"/>
+        </record>
+        <record id="op_batch_9" model="op.batch">
+            <field name="code">level-b8</field>
+            <field name="name">level-batch-8</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-03-03 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-03-03 %H:%M')"/>
+            <field name="level_id" ref="op_level_10"/>
+        </record>
+        <record id="op_batch_10" model="op.batch">
+            <field name="code">level-b9</field>
+            <field name="name">level-batch-9</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-04-05 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-04-05 %H:%M')"/>
+            <field name="level_id" ref="op_level_11"/>
+        </record>
+        <record id="op_batch_11" model="op.batch">
+            <field name="code">level-b10</field>
+            <field name="name">level-batch-10</field>
+            <field name="start_date"
+                   eval="(DateTime.today() - relativedelta(years=1)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="end_date"
+                   eval="(DateTime.today() + relativedelta(years=2)).strftime('%Y-06-04 %H:%M')"/>
+            <field name="level_id" ref="op_level_12"/>
+        </record>
+    </data>
+</odoo>

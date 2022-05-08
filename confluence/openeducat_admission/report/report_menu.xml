@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_report_report_admission_analysis" model="ir.actions.report">
+            <field name="name">Admission Analysis</field>
+            <field name="model">admission.analysis</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_admission.report_admission_analysis</field>
+            <field name="report_file">openeducat_admission.report_admission_analysis</field>
+        </record>
+
+        <record id="admission_form_acion" model="ir.actions.report">
+            <field name="name">Pre-Application Form</field>
+            <field name="model">op.admission</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_admission.report_admission_form_template</field>
+            <field name="report_file">openeducat_admission.report_admission_form_template</field>
+            <field name="binding_model_id" ref="model_op_admission"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="registration_form_acion" model="ir.actions.report">
+            <field name="name">Registration Form</field>
+            <field name="model">op.admission</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_admission.report_registration_form_template</field>
+            <field name="report_file">openeducat_admission.report_registration_form_template</field>
+            <field name="binding_model_id" ref="model_op_admission"/>
+            <field name="binding_type">report</field>
+        </record>
+
+        <record id="re_registration_form_acion" model="ir.actions.report">
+            <field name="name">Re-Registration Form</field>
+            <field name="model">re.registration</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">openeducat_admission.report_re_registration_form_template</field>
+            <field name="report_file">openeducat_admission.report_re_registration_form_template</field>
+            <field name="binding_model_id" ref="model_re_registration"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>
