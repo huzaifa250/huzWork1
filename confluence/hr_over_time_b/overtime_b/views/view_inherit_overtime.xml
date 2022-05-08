@@ -6,7 +6,9 @@
         <field name="model">hr.overtime</field>
         <field name="inherit_id" ref="overtime_b.hr_overtime_form1_view"/>
         <field name="arch" type="xml">
-
+            <!-- Adding fields-->
+            <!--            <xpath expr="//group/group/field[@name='job_id']" position="after">-->
+            <!--            </xpath>-->
 
         </field>
     </record>

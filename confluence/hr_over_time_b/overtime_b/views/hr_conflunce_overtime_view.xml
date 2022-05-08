@@ -193,6 +193,7 @@
             </form>
         </field>
     </record>
+
     <record id="action_hr_overtime_month" model="ir.actions.act_window">
         <field name="name">Overtime Request</field>
         <field name="res_model">hr.overtime.month</field>
