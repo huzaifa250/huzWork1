@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="account.action_report_payment_receipt" model="ir.actions.report">
+            <field name="name">Payment Receipt</field>
+            <field name="model">account.payment</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">confluence_reports.payment_receipt_template</field>
+            <field name="report_file">confluence_reports.payment_receipt_template</field>
+            <field name="binding_model_id" ref="account.model_account_payment"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+        <record id="action_parent_statement" model="ir.actions.report">
+            <field name="name">Parent Statement</field>
+            <field name="model">op.parent</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">confluence_reports.parent_statement_template</field>
+            <field name="report_file">confluence_reports.parent_statement_template</field>
+            <field name="binding_model_id" ref="model_op_parent"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="parent_statement_template_doc">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td colspan="3">
+                                    <span style="font-weight: bold;">School Year :</span><span style="margin-left:20px" t-esc="o.year"/>
+                                </td>
+                                <td style="border: 1px solid black">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span style="font-weight: bold;">Name :</span>
+                                </td>
+                                <td colspan="3" class="text-left">
+                                    <span style="font-size:40px;" t-esc="o.name.name"></span>
+                                </td>
+                            </tr>
+                            <tr><td colspan="4"></td></tr>
+                            <tr><td colspan="4"></td></tr>
+                            <tr>
+                                <td style="border: 1px solid #f3f6f4;width:25%;">
+                                    <span style="font-weight: bold;">REMAINING AMOUNT :</span>
+                                </td>
+                                <td style="border: 1px solid #f3f6f4" class="text-left;width:25%;">
+                                    <span style="font-weight: bold;" t-esc="remain_fees"/>
+                                </td>
+                                <td style="border: 1px solid #f3f6f4;margin-left:30px;;width:20%;" class="text-right">
+                                    <span style="font-weight: bold;">TOTAL AMOUNT :</span>
+                                </td>
+                                <td style="border: 1px solid #f3f6f4" class="text-left;width:30%;">
+                                    <span style="font-weight: bold;" t-esc="total_fees"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/><br/>
+
+                    <table class="table table-bordered" style="width:80%;">
+                        <tbody>
+                            <tr style="background-color:#eeeeee;line-height:25px;">
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">STUDENT/S NAME/S</span>
+                                </td>
+                                <td style="border: 1px solid black;" class="text-center">
+                                    <span style="font-weight: bold;">GRADE</span>
+                                </td>
+                                <td style="border: 1px solid black;" class="text-center">
+                                    <span style="font-weight: bold;">FEES</span>
+                                </td>
+                            </tr>
+                            <t t-foreach="childs" t-as="child">
+                                <tr style="line-height:25px;">
+                                    <td style="border: 1px solid black;">
+                                        <span style="font-weight: bold;" t-esc="child[0]"></span>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span style="font-weight: bold;" t-esc="child[1]"></span>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span style="font-weight: bold;" t-esc="child[2]"></span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                    <br/>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr style="background-color:#eeeeee;line-height:25px;" class="text-center">
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">NO</span>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">Date</span>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">Receipt 
+                                        <br/>Number</span>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">SD</span>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">$</span>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">PAY</span>
+                                </td>
+                                <td style="border: 1px solid black;">
+                                    <span style="font-weight: bold;">Amount Text</span>
+                                </td>
+                            </tr>
+                            <t t-set="count" t-value="1"/>
+                            <t t-foreach="payments" t-as="payment">
+                                <tr style="line-height:25px;">
+                                    <td style="border: 1px solid black;">
+                                        <span style="font-weight: bold;" t-esc="count"></span>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span style="font-weight: bold;" t-esc="payment[0]"></span>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <span style="font-weight: bold;" t-esc="payment[1]"></span>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <t t-if="payment[2] == 'ج.س.' ">
+                                            ج.س.<span style="font-weight: bold;" t-esc="payment[3]"></span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-weight: bold;">0</span>
+                                        </t>
+                                    </td>
+                                    <td style="border: 1px solid black;">
+                                        <t t-if="payment[2] == '$' ">
+                                            $<span style="font-weight: bold;" t-esc="payment[3]"></span>
+                                        </t>
+                                        <t t-else="">
+                                            <span style="font-weight: bold;">0</span>
+                                        </t>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span style="font-weight: bold;" t-esc="payment[2]"></span>
+                                    </td>
+                                    <td style="border: 1px solid black">
+                                        <span style="font-weight: bold;" t-esc="payment[4]"></span>
+                                    </td>
+                                    <t t-set="count" t-value="count+1"/>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"/>
+                                    <td colspan="3" style="border: 1px solid black" class="text-center">
+                                        <span style="font-weight: bold;" t-esc="payment[2]"></span><span style="font-weight: bold;" t-esc="paid_fees"></span>
+                                    </td>
+                                    <td/>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                    <br/><br/>
+
+                    <p>SIGNATURE ...............................</p>
+                    <p>NOTE : SCHOOL FEES ARE NOT REFUNDABLE</p>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="parent_statement_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="confluence_reports.parent_statement_template_doc"/>
+            </t>
+        </t>
+    </template>
+</odoo>

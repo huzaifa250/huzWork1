@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="payment_receipt_template_doc">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <div>
+                        <div style="border: 2px solid black;padding: 25px;width:25%;float:left">
+                            <center><span style="font-weight: bold" t-esc="o.student_id.std_no"> </span></center>
+                        </div>
+                        <div style="width:30%;float:right">
+                            <span style="font-weight: bold;">RECEIPT NUMBER</span>
+                            <span style="font-weight: bold;margin-left:20px" t-esc="o.name"> </span>
+                        </div>
+                    </div>
+
+                    <br/><br/><br/><br/><br/><br/>
+                    <span style="font-weight: bold;margin-left:300px">School Year :</span><span style="margin-left:20px" t-esc="o.year"/>
+                    <br/><br/><br/>
+                    <div style="border: 2px solid black;padding: 30px;border-radius: 15px;font-size: 150%;">
+                        <span style="font-weight: bold;">Name :</span>
+                        <span style="font-weight: bold;margin-left:20px" t-esc="o.partner_id.name"> </span>
+                    </div>
+                    <br/><br/><br/>
+                    <table style="width:100%;">
+                        <tbody>
+                            <tr style="background-color:#eeeeee;line-height:30px;">
+                                <td style="border: 1px solid black;width:15%">
+                                    <span style="font-weight: bold;">Date</span>
+                                </td>
+                                <td style="border: 1px solid black;width:15%">
+                                    <span style="font-weight: bold;">SD</span>
+                                </td>
+                                <td style="border: 1px solid black;width:15%">
+                                    <span style="font-weight: bold;">$</span>
+                                </td>
+                                <td style="border: 1px solid black;width:15%">
+                                    <span style="font-weight: bold;">Pay</span>
+                                </td>
+                                <td style="border: 1px solid black;width:40%">
+                                    <span style="font-weight: bold;">Amount Text</span>
+                                </td>
+                            </tr>
+                            <tr style="line-height:30px;">
+                                <td style="border: 1px solid black;width:15%">
+                                    <span style="font-weight: bold;" t-esc="o.date"></span>
+                                </td>
+                                <td style="border: 1px solid black;width:15%">
+                                    <t t-if="o.currency_id.symbol == 'ج.س.' ">
+                                        <span style="font-weight: bold;" t-esc="o.amount"></span>
+                                    </t>
+                                    <t t-else="">
+                                        <span style="font-weight: bold;width:15%">0</span>
+                                    </t>
+                                </td>
+                                <td style="border: 1px solid black;width:15%">
+                                    <t t-if="o.currency_id.symbol == '$' ">
+                                        <span style="font-weight: bold;" t-esc="o.amount"></span>
+                                    </t>
+                                    <t t-else="">
+                                        <span style="font-weight: bold;">0</span>
+                                    </t>
+                                </td>
+                                <td style="border: 1px solid black;width:15%">
+                                    <t t-if="o.currency_id.symbol == '$' ">
+                                        <span style="font-weight: bold;" t-esc="o.currency_id.symbol"></span>
+                                    </t>
+                                    <t t-if="o.currency_id.symbol == 'ج.س.' ">
+                                        <span style="font-weight: bold;" t-esc="o.currency_id.symbol"></span>
+                                    </t>
+                                </td>
+                                <td style="border: 1px solid black;width:40%">
+                                    <span style="font-weight: bold;" t-esc="o.amount_words"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+                    <span style="font-weight: bold">Signature : .....................................</span>
+                    <br/><br/><br/>
+                    <h2>NOTE : School fees are not refundable</h2>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="payment_receipt_template">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="confluence_reports.payment_receipt_template_doc"/>
+            </t>
+        </t>
+    </template>
+</odoo>
