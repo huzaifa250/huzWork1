@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="staff_type" laceholder="Type of Staff"/>
+                    <field name="currency" />
+                </xpath>
+
+                <!-- <xpath expr="//page[@name='other']" position="replace">
+                </xpath> -->
+
+                <xpath expr="//group[@name='salary_info']" position="after">
+                <group string="Salary Details" name="salary_details" attrs="{'invisible':[('staff_type','=','international_staff')]}">
+                    <field name="basic"/>
+                    <field name="cola"/>
+                    <field name="subsistence"/>
+                    <field name="clothing"/>
+                    <field name="transportation"/>
+                </group>
+                </xpath>
+                
+                <xpath expr="//div[@name='wage']" position="after">
+                    <field name="allowances" attrs="{'invisible':[('staff_type','=','international_staff')]}"/>
+                    <field name="salary" attrs="{'invisible':[('staff_type','=','international_staff')]}"/>
+                    <field name="transportation_fixed" attrs="{'invisible':[('staff_type','=','international_staff')]}"/>
+                </xpath>
+            
+                <xpath expr="//page[@name='information']" position="after">
+                    <page string="International Staff" name="international_staff" attrs="{'invisible': [('staff_type', '!=', 'international_staff')]}">
+                        <group name="international_info">
+                            <field name="transportation_international"/>
+                            <field name="visa_expenses"/>
+                            <field name="tickets"/>
+                            <field name="medical_insurance"/>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
