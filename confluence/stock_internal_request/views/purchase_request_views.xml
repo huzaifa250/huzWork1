@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it purchase.request-->
+        <record id="view_purchase_request_form_inherit" model="ir.ui.view">
+            <field name="name">view.purchase.request.form.inherit</field>
+            <field name="model">purchase.request</field>
+            <field name="inherit_id" ref="purchase_request.view_purchase_request_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='description']" position="after">
+                       <group>
+                            <field name="internal_request_id"  attrs="{'invisible': [('is_internal_request','=', False)]}"/>
+                            <field name="is_internal_request" invisible="1"/>
+                       </group>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Inherit Form View to Modify it Res Config Setting-->
+        <record id="res_config_settings_view_form_inh" model="ir.ui.view">
+            <field name="name">view.res.config.settings.form.inherit</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="Internal Requisitions" string="Internal Requisitions"
+                         data-key="stock_internal_request" groups="stock.group_stock_manager">
+                        <h2>Internal Requisition</h2>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-12 col-lg-6 o_setting_box">
+                                <div class="o_setting_left_pane"/>
+                                <div class="o_setting_right_pane">
+                                    <span class="o_form_label">Internal Requisition</span>
+                                    <div class="text-muted">
+                                        Default Location and Operation applied to Internal Requisition
+                                    </div>
+                                    <div class="content-group">
+                                        <div class="row mt16">
+                                            <label for="location_id" class="col-lg-3 o_light_label"/>
+                                            <field name="location_id"
+                                                   options="{'no_create_edit': True, 'no_open': True}"/>
+                                        </div>
+                                        <div class="row mt16">
+                                            <label for="picking_type_id" class="col-lg-3 o_light_label"/>
+                                            <field name="picking_type_id"
+                                                   options="{'no_create_edit': True, 'no_open': True}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_internal_requisition_config_settings" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="res_config_settings_view_form_inh"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'stock_internal_request'}</field>
+        </record>
+
+        <menuitem id="menu_internal_requisition_general_settings"
+                  name="Settings"
+                  parent="menu_internal_requisition_config"
+                  action="action_internal_requisition_config_settings"/>
+    </data>
+</odoo>

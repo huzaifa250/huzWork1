@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="stationary_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page" dir="rtl">
+                          <strong><h1 align="center" style="font-weight: bold;">(Teachers Stationary UOI(<span t-esc="context_timestamp(datetime.datetime.now()).year"/>/<span t-esc="context_timestamp(datetime.datetime.now()).year + 1"/></h1></strong>
+
+                            <table class="table table-sm table-bordered">
+                                <t t-set="total" t-value="0"/>
+                                <tr class="text-right" dir="rtl">
+                                    <td dir="rtl">
+                                        <strong>Products</strong>
+                                    </td>
+                                    <t t-foreach="o.env['op.classroom'].search([])" t-as="line">
+
+                                        <t t-if="o.env['stock.picking'].search([]).filtered(lambda l:l.op_class_id.id == line.id and l.picking_type_id.code == 'outgoing')">
+                                            <td dir="ltr">
+                                                <strong>
+                                                    <span t-field="line.name"/>
+                                                    <t t-att-t-set="line.name" t-value="0"/>
+                                                </strong>
+                                            </td>
+                                        </t>
+                                    </t>
+                                     <td dir="rtl">
+                                        <strong>Total</strong>
+                                    </td>
+                                </tr>
+
+                                <t t-foreach="o.env['product.product'].search([])" t-as="p_p">
+                                    <t t-if="o.env['stock.move'].search([]).filtered(lambda l:l.picking_id.picking_type_id.code == 'outgoing' and
+                                        l.product_id.id == p_p.id and l.picking_id.is_requisition_out_transfer)">
+                                        <tr class="text-right" dir="rtl">
+                                            <td class="text-right" dir="rtl" width="15%">
+                                                <span t-field="p_p.name"/>
+                                            </td>
+
+                                            <t t-foreach="o.env['op.classroom'].search([])" t-as="p_c">
+                                                    <td class="text-right" dir="rtl" width="10%">
+                                                        <span t-esc="sum(l.quantity_done for l in  o.env['stock.move'].search([]).filtered(lambda l:l.picking_id.picking_type_id.code == 'outgoing' and l.product_id.id == p_p.id and l.picking_id.op_class_id.id  == p_c.id and l.picking_id.is_requisition_out_transfer))"/>
+                                                    </td>
+                                            </t>
+                                            <td class="text-right" dir="rtl" width="10%">
+                                                        <span t-esc="sum(l.quantity_done for l in  o.env['stock.move'].search([]).filtered(lambda l:l.picking_id.picking_type_id.code == 'outgoing' and l.product_id.id == p_p.id  and l.picking_id.is_requisition_out_transfer))"/>
+                                                    </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        <report
+                string="Stationary Teachers Stationary UOI"
+                id="stationary_report"
+                model="stock.picking"
+                report_type="qweb-pdf"
+                name="stock_confluence.stationary_report_template"
+                file="Stationary Report"/>
+        <!-- <menuitem-->
+        <!--                name="Teachers Stationary UOI Report"-->
+        <!--        id="stock_teachers_stationary_uoi_report_menu_44"-->
+        <!--        parent="stock.menu_warehouse_report" sequence="150"-->
+        <!--         action="stock_confluence.stationary_report"/>-->
+
+ <menuitem
+                name="Teachers Stationary UOI"
+        id="stock_teachers_stationaryuoi_report_menu"
+        parent="stock.menu_warehouse_report" sequence="150"
+         action="stock_confluence.stationary_report"/>
+    </data>
+</odoo>

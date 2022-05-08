@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+ <template id="stationary_request_report_template">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+
+                    <div class="page">
+                          <h4 class="text-center">
+                            <strong>
+                                <span>(Academic Year (<span t-esc="context_timestamp(datetime.datetime.now()).year"/>/<span t-esc="context_timestamp(datetime.datetime.now()).year + 1"/></span>
+                                <span>Stationary Request Form:</span>
+                            </strong>
+                            <br/>
+
+                            <strong>
+                                <span>Level:</span>
+                            </strong>
+                            <t t-esc="op_level_id_name"/>
+                              <strong>
+                                <span>class:</span>
+                            </strong>
+                            <t t-esc="op_level_id_name"/>
+                        </h4>
+                        <br/>
+
+                        <table class="table table-bordered" style="width: 100%;border: 3px solid black;">
+                            <t t-set="total" t-value="0"/>
+                            <tr class="text-right" dir="rtl">
+                                    <td dir="rtl"><strong>No</strong></td>
+                                    <td dir="rtl"><strong>Items</strong></td>
+                                    <td dir="rtl"><strong>Requested</strong></td>
+                                    <td dir="rtl"><strong>Given</strong></td>
+                                </tr>
+                            <tbody>
+                                <t t-foreach="product_r" t-as="pro">
+                                    <tr>
+                                        <td class="text-center" colspan="1" style="border: 1px solid black;">
+                                            <span t-esc="pro['product_name']"/>
+                                        </td>
+                                        <td class="text-center" colspan="1" style="border: 1px solid black;">
+                                            <span t-esc="pro['requested']"/>
+                                        </td>
+                                        <td class="text-center" colspan="1" style="border: 1px solid black;">
+                                            <span t-esc="pro['give']"/>
+                                        </td>
+                                            </tr></t>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+             </t>
+
+    </template>
+
+
+<!--        <record id="teachers_stationary_uoi_action" model="ir.actions.report">-->
+<!--            <field name="name">Payroll Batch Report</field>-->
+<!--            <field name="model">stock.picking</field>-->
+<!--            <field name="report_type">qweb-pdf</field>-->
+<!--            <field name="report_name">stock_confluence.teachers_stationary_uoi_report_template</field>-->
+<!--            <field name="report_file">stock_confluence.teachers_stationary_uoi _report</field>-->
+<!--            <field name="print_report_name">(object.name)</field>-->
+<!--            <field name="binding_model_id" ref="model_stock_picking"/>-->
+<!--            <field name="binding_type">report</field>-->
+<!--        </record>-->
+
+
+       <report id="stationary_request_report"
+            model="stock.move"
+            string="Teachers Stationary UOI Report"
+            file="stock_confluence.stationary_request_report_template"
+            name="stock_confluence.stationary_request_report_template"
+            report_type="qweb-pdf"
+            menu="False"
+    />
+
+        <act_window id="stationary_request_action"
+            name="Stationary Request"
+            res_model="teachers.stationary.uoi.wizard"
+            view_mode="form"
+            target="new"
+                />
+
+
+        <menuitem
+                name="Stationary Reqyest Report"
+        id="stock_stationary_request_report_menu"
+        parent="stock.menu_warehouse_report" sequence="150"
+         action="stock_confluence.stationary_request_action"/>
+    </data>
+</odoo>

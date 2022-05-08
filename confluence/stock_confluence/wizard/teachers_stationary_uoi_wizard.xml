@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="teachers_stationary_uoi_wizard_view_form" model="ir.ui.view">
+            <field name="name">teachers.stationary.uoi.wizard.view.form</field>
+            <field name="model">teachers.stationary.uoi.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Teachers Stationary UOI Report">
+                    <sheet>
+                        <group col="2">
+                            <group>
+                                <field name="from_date" required="True"/>
+                                <field name="op_level_id" required="True"/>
+                            </group>
+                            <group>
+                                <field name="to_date" required="True"/>
+                                <field name="op_class_id" required="True"/>
+                            </group>
+                        </group>
+                        <footer>
+                            <button name="get_report" string="Print" type="object" class="btn-primary" icon="fa-file-pdf-o"/>
+                            OR
+                            <button string="Cancel" class="btn-danger" special="cancel" icon="fa-close"/>
+                        </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,35 @@
+<odoo>
+  <data>
+    <!-- Inherit Form View to Modify it Employee -->
+    <record id="view_employee_form_inherit" model="ir.ui.view">
+      <field name="name">view.employee.form.inherit</field>
+      <field name="model">hr.employee</field>
+      <field name="inherit_id" ref="hr.view_employee_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//page[@name='hr_settings']" position="after">
+          <page string="Requisition Settings">
+            <group>
+              <group>
+                <field name="location_dest_id"/>
+              </group>
+            </group>
+          </page>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Inherit Form View to Modify it HR Department-->
+    <record id="view_department_form_inherit" model="ir.ui.view">
+      <field name="name">view.department.form.inherit</field>
+      <field name="model">hr.department</field>
+      <field name="inherit_id" ref="hr.view_department_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='parent_id']" position="after">
+          <field name="location_dest_id"/>
+        </xpath>
+      </field>
+    </record>
+
+  </data>
+</odoo>

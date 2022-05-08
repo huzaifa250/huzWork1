@@ -1,0 +1,259 @@
+<odoo>
+    <data>
+<!--        <record model="ir.actions.act_window" id="purchase_request_action">-->
+<!--        <field name="name">Purchase Request</field>-->
+<!--        <field name="type">ir.actions.act_window</field>-->
+<!--        <field name="res_model">purchase.request</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="domain">[('internal_request_id','=',active_id)]</field>-->
+<!--    </record>-->
+
+
+<!--        <record id="view_internal_request_tree" model="ir.ui.view">-->
+<!--            <field name="name">view.internal.requisition.tree</field>-->
+<!--            <field name="model">internal.requisition</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="Internal Requisition">-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="requisition_responsible" string="Requester"/>-->
+<!--                    <field name="department_id"/>-->
+<!--                    <field name="requisition_date"/>-->
+<!--                    <field name="requisition_deadline" invisible="1"/>-->
+<!--                    <field name="company_id"/>-->
+<!--                    <field name="origin"/>-->
+<!--                    <field name="state"/>-->
+<!--                </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="view_internal_request_form" model="ir.ui.view">-->
+<!--            <field name="name">view.internal.request.form</field>-->
+<!--            <field name="model">internal.requisition</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Internal Requisition">-->
+<!--                    <header>-->
+<!--                        <button name="action_submit" string="Submit" class="oe_highlight" states="draft" type="object"/>-->
+<!--                        <button name="action_dept_approve" string="Department Approve" class="oe_highlight"-->
+<!--                                states="waiting_dept_app" type="object"-->
+<!--                                groups="stock_internal_request.group_internal_department_manager_view,base.group_user,stock_internal_request.group_internal_manager_view "/>-->
+<!--                        <button name="action_approve" string="Approved" class="oe_highlight" states="waiting_app"-->
+<!--                                type="object" groups="stock_internal_request.group_internal_manager_view"/>-->
+<!--                        <button name="action_reject" string="Reject" states="waiting_dept_app,waiting_app"-->
+<!--                                type="object"/>-->
+<!--                        <button name="action_requested_stock" string="Request To Stock" class="oe_highlight"-->
+<!--                                states="approved" type="object"-->
+<!--                                groups="stock_internal_request.group_internal_manager_view"/>-->
+<!--                        <button name="action_cancel" string="Cancelled" states="draft,approved" type="object"-->
+<!--                                groups="stock_internal_request.group_internal_manager_view"/>-->
+<!--                        <button name="action_set_to_draft" string="Set To Draft" states="cancel,received"-->
+<!--                                class="oe_highlight" type="object"-->
+<!--                                groups="stock_internal_request.group_internal_manager_view"/>-->
+<!--                        <button name="create_purchase_request" string="Create Purchase Request"  attrs="{'invisible': ['|',('request', '=',False),('is_created', '=',True)]}"-->
+<!--                                class="oe_highlight" type="object"-->
+<!--                                groups="stock_internal_request.group_internal_manager_view"/>-->
+<!--                        <field name="state" widget="statusbar"-->
+<!--                               statusbar_visible="draft,waiting_dept_app,waiting_app"/>-->
+<!--                    </header>-->
+<!--                    <sheet>-->
+<!--                        <div class="oe_button_box" name="button_box">-->
+<!--                            <button name="action_internal_requisition"-->
+<!--                                    type="object"-->
+<!--                                    class="oe_stat_button"-->
+<!--                                    icon="fa-truck"-->
+<!--                                    attrs="{'invisible': [('internal_req_count', '=', 0)]}" groups="base.group_user">-->
+<!--                                <field name="internal_req_count" string="Delivery" widget="statinfo"/>-->
+<!--                            </button>-->
+<!--                             <button name="%(purchase_request_action)d"-->
+<!--                                    type="action"-->
+<!--                                    class="oe_stat_button"-->
+<!--                                    icon="fa-truck"-->
+<!--                                    attrs="{'invisible': [('request_count', '=', 0)]}" groups="base.group_user">-->
+<!--                                <field name="request_count" string="Purchase Request" widget="statinfo"/>-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                        <div class="oe_title">-->
+<!--                            <h1>-->
+<!--                                <field name="name" readonly="1"/>-->
+<!--                            </h1>-->
+<!--                        </div>-->
+<!--                        <group>-->
+<!--                            <group>-->
+<!--                                <field name="requisition_responsible" string="Requester" required="1"-->
+<!--                                       attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                <field name="employee_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                <field name="department_id" attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                <field name="company_id" invisible="1" attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                <field name="warehouse_id" required="1"-->
+<!--                                       attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                <field name="location_dest_id"/>-->
+
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="requisition_date" attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                <field name="received_date" invisible="1"/>-->
+<!--                                <field name="picking_id" />-->
+<!--                                <field name="requisition_deadline" invisible="1"/>-->
+<!--                                <field name="analytic_account_id" attrs="{'readonly': [('state','!=', 'draft')]}" invisible="1"/>-->
+<!--                                <field name="analytic_tag_ids" widget="many2many_tags"-->
+<!--                                       attrs="{'readonly': [('state','!=', 'draft')]}" invisible="1"/>-->
+<!--                                <field name="request_type_id" required="0"-->
+<!--                                       attrs="{'readonly': [('state','!=', 'draft')]}" invisible="1"/>-->
+<!--                                <field name="origin" attrs="{'readonly': [('state','!=', 'draft')]}"/>-->
+<!--                                        <field name="reason_requisition"-->
+
+<!--                                               attrs="{'required':[('state', '=', 'draft')]}"/>-->
+<!--                                &lt;!&ndash;                                <field name="delivery_state" invisible="1"/>&ndash;&gt;-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--                                <field name="vendor_id" attrs="{'invisible': [('request','=', False)],'required': [('request','=', True)]}"/>-->
+<!--                                <field name="purchase_type" required="0"/>-->
+<!--                                <field name="request" invisible="1"/>-->
+<!--                                <field name="is_created" invisible="1"/>-->
+<!--                            </group>-->
+<!--                        </group>-->
+
+<!--                        <notebook>-->
+<!--                            <page name="requisition_line_ids" string="Requisition Lines">-->
+<!--                                <field name="requisition_line_ids" attrs="{'readonly': [('state','!=', 'draft')]}">-->
+<!--                                    <tree editable="bottom">-->
+<!--                                        <field name="product_id"/>-->
+<!--                                        <field name="name"/>-->
+<!--                                        <field name="product_qty"/>-->
+<!--                                        <field name="product_uom" groups="uom.group_uom"/>-->
+<!--                                    </tree>-->
+<!--                                </field>-->
+<!--                            </page>-->
+<!--                            <page string="Picking Details" invisible="1">-->
+<!--                                <group>-->
+<!--                                    <group>-->
+<!--                                        <field name="location_id"/>-->
+<!--                                        <field name="location_dest_id"/>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+<!--                                        <field name="picking_id"/>-->
+<!--                                        <field name="picking_type_id"/>-->
+<!--                                    </group>-->
+<!--                                </group>-->
+<!--                            </page>-->
+<!--                            <page string="Approval Information">-->
+<!--                                <group>-->
+<!--                                    <group>-->
+<!--                                        <field name="confirmed_by"/>-->
+<!--                                        <field name="department_manager"/>-->
+<!--                                        <field name="request_app_by"/>-->
+<!--                                        <field name="reject_by"/>-->
+<!--                                    </group>-->
+<!--                                    <group>-->
+<!--                                        <field name="confirmed_date"/>-->
+<!--                                        <field name="dept_app_date"/>-->
+<!--                                        <field name="app_date"/>-->
+<!--                                        <field name="reject_date"/>-->
+<!--                                    </group>-->
+<!--                                </group>-->
+<!--                            </page>-->
+<!--                        </notebook>-->
+
+<!--                    </sheet>-->
+<!--                    <div class="oe_chatter">-->
+<!--                        <field name="message_follower_ids" widget="mail_followers"/>-->
+<!--                        &lt;!&ndash;<field name="activity_ids" widget="mail_activity"/>&ndash;&gt;-->
+<!--                        <field name="message_ids" widget="mail_thread"/>-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="view_internal_request_search" model="ir.ui.view">
+            <field name="name">view.internal.request.search</field>
+            <field name="model">internal.requisition</field>
+            <field name="arch" type="xml">
+                <search string="Internal Requisition">
+                    <field name="employee_id" string="Employee"/>
+                    <field name="department_id" string="Department"/>
+                    <filter name="employee_id" string="Employee"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Status" name="state" domain="[]" context="{'group_by':'state'}"/>
+                        <filter string="Employee" name="employee_id" domain="[]" context="{'group_by':'employee_id'}"/>
+                        <filter name="department_id" string="Departments" domain="[]"
+                                context="{'group_by':'department_id'}"/>
+                        <filter string="Requisition Date" name="requisition_date" domain="[]"
+                                context="{'group_by':'requisition_date'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_internal_request" model="ir.actions.act_window">
+            <field name="name">Internal Requisition</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">internal.requisition</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="view_request_type_form" model="ir.ui.view">
+            <field name="name">view.request.type.form</field>
+            <field name="model">request.type</field>
+            <field name="arch" type="xml">
+                <form string="Request Type">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="location_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_request_type_tree" model="ir.ui.view">
+            <field name="name">view.request.type.tree</field>
+            <field name="model">request.type</field>
+            <field name="arch" type="xml">
+                <tree string="Request Type">
+                    <field name="name"/>
+                    <field name="location_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_request_type" model="ir.actions.act_window">
+            <field name="name">Request Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">request.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+<!--        <menuitem id="menu_requisition_root"-->
+<!--                  name="Requisition"-->
+<!--                  web_icon="stock_internal_request,static/description/icon.png"-->
+<!--                  sequence="10"-->
+<!--                  groups="base.group_user"/>-->
+
+        <menuitem id="menu_internal_requisition_action"
+                  name="Stock Requisition"
+                  parent="purchase_request.menu_requisition_root"
+                  action="action_internal_request"
+                  sequence="9"
+                  active="False"
+        />
+
+        <menuitem id="menu_internal_requisition_config"
+                  name="Configuration"
+                  parent="purchase_request.menu_requisition_root"
+                  sequence="11"
+                  groups="group_internal_manager_view"/>
+
+        <menuitem id="menu_action_request_type"
+                  name="Request Type"
+                  parent="menu_internal_requisition_config"
+                  action="action_request_type"
+                  sequence="10"
+                  />
+
+
+    </data>
+</odoo>

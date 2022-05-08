@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+
+
+
+<record id="maintenance_requests_report" model="ir.actions.report">
+            <field name="name">Maintenance Request Report</field>
+            <field name="model">purchase.order.conflu</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase_request.report_maintenance_requests_template</field>
+            <field name="report_file">purchase_request.report_maintenance_requests_template</field>
+            <field name="print_report_name">(object.name)</field>
+            <field name="binding_model_id" ref="model_purchase_order_conflu"/>
+            <field name="binding_type">report</field>
+        </record>
+<!--    report_type="qweb"-->
+
+
+
+<template id="report_maintenance_requests_template">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+
+                          <strong><h1 align="center" style="font-weight: bold;">Maintenance Request</h1></strong>
+
+                        <table width="100%">
+                            <tr>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Request Ref:</h5>&#160;&#160;&#160;
+                                    <span t-field="o.sequence"/>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Request :</h5>&#160;&#160;&#160;
+                                    <span t-field="o.name"/>
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Employee:</h5>
+                                    <span t-field="o.employee_id"/>
+                                </td>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Department:</h5>
+                                    <span t-field="o.department_id"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160;description:</h5>&#160;&#160;&#160;
+                                    <span t-field="o.description"/>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                </div>
+            </t>
+            </t>
+    </t>
+</template>
+
+
+
+  </data>
+</odoo>

@@ -1,0 +1,95 @@
+<odoo>
+  <data>
+
+
+
+<record id="stationary_request_report" model="ir.actions.report">
+            <field name="name">Stationary Request Report</field>
+            <field name="model">purchase.request</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase_request.report_stationary_request_template</field>
+            <field name="report_file">purchase_request.report_stationary_request_template</field>
+            <field name="print_report_name">(object.name)</field>
+            <field name="binding_model_id" ref="model_purchase_request"/>
+            <field name="binding_type">report</field>
+        </record>
+<!--    report_type="qweb"-->
+
+
+
+<template id="report_stationary_request_template">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+
+                          <strong><h1 align="center" style="font-weight: bold;">Stationary Request</h1></strong>
+
+                        <table width="100%">
+                            <tr>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Request Ref:</h5>&#160;&#160;&#160;
+                                    <span t-field="o.name"/>
+                                </td>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Requested by:</h5>
+                                    <span t-field="o.requested_by"/>
+                                </td>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Request date:</h5>
+                                    <span t-field="o.date_start"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160;Level:</h5>&#160;&#160;&#160;
+                                    <span t-field="o.op_level_id.name"/>
+                                </td>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Class:</h5>
+                                    <span t-field="o.op_class_id.name"/>
+                                </td>
+                                <td style=" height:64px;margin-top: 4%;"  width="30%">
+                                    <h5 style="font-weight: bold;display:inline-block;">&#160; Location:</h5>
+                                    <span t-field="o.location_dest_id.name"/>
+                                </td>
+                            </tr>
+                        </table>
+ <table  class="table" style=" border-collapse: collapse;">
+                        <tbody style="border:solid 1px;text-align:center;">
+                              <tr>
+                                  <strong> <th> Product </th> </strong>
+                                  <strong> <th> description </th> </strong>
+                                  <strong> <th>Quantity On Hand </th> </strong>
+                                  <strong> <th>Request Quantity  </th> </strong>
+
+                                </tr>
+                <t t-foreach="o.line_ids" t-as="line">
+
+
+                <tr>
+
+
+                    <td style=" border-collapse: collapse;"> <span t-field="line.product_id.name"/> </td>
+                    <td style=" border-collapse: collapse;"> <span t-field="line.name"/> </td>
+                    <td style=" border-collapse: collapse;"> <span t-field="line.qty_available"/> </td>
+                    <td style=" border-collapse: collapse;"> <span t-field="line.product_qty"/> </td>
+
+
+            </tr>
+             </t>
+        </tbody>
+    </table>
+
+                </div>
+            </t>
+            </t>
+    </t>
+</template>
+
+
+
+  </data>
+</odoo>
